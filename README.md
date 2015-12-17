@@ -1,4 +1,4 @@
 Trendr
 --------
 
-Testing Heroku automate deployment at https://mks-trendr.herokuapp.com/#/.
+Testing Heroku's automated deployment at https://mks-trendr.herokuapp.com/#/.
