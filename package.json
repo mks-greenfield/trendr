@@ -4,7 +4,8 @@
   "description": "Trendr --------",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,15 @@
   "homepage": "https://github.com/kcvan/trendr#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "bower": "^1.7.1",
     "express": "^4.13.3",
     "fs": "0.0.2",
     "morgan": "^1.6.1",
     "path": "^0.12.7",
     "request": "^2.67.0",
     "twitter": "^1.2.5"
+  },
+  "engines": {
+    "node": "5.0.0"
   }
 }
