@@ -1,5 +1,14 @@
-angular.module('trendr', [])
+var trendr = angular.module('trendr', [
+  'ngRoute',
+  'home'
+]);
 
-.controller('mainView', function($scope) {
-  $scope.test = 'Test Display'
-})
+trendr.config(function($routeProvider) {
+  $routeProvider.when('/', {
+    templateUrl: './home/homeView.html',
+    controller: 'homeController'
+  })
+  .otherwise({
+    redirectTo: '/'
+  });
+});

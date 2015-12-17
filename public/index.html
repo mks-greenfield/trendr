@@ -1,14 +1,15 @@
 <doctype! html>
-  <html>
+  <html ng-app='trendr'>
 
   <head>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="app.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
   </head>
 
   <body>
-    <div ng-app="trendr" ng-controller="mainView">
-    {{ test }}
+    <div ng-view></div>
+    <script src="home/homeController.js"></script>
+    <script src="app.js"></script>
   </body>
 
   </html>
