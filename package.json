@@ -1,0 +1,25 @@
+{
+  "name": "trendr",
+  "version": "1.0.0",
+  "description": "Trendr --------",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcvan/trendr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcvan/trendr/issues"
+  },
+  "homepage": "https://github.com/kcvan/trendr#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1",
+    "request": "^2.67.0"
+  }
+}
