@@ -8,6 +8,10 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
+//load client side assets
+app.use(express.static(path.join(__dirname, 'public')));
+//client side package manager
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // process.env.PORT lets the port be set by Heroku
 var port = (process.env.PORT || 3000);
