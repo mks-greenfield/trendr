@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // process.env.PORT lets the port be set by Heroku
-var port = (process.env.PORT || 3000);
+var port = (process.env.PORT || 5000);
 
 app.get('/api', function(req, res) {
 
