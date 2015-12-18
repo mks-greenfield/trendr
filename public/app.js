@@ -1,7 +1,9 @@
 var trendr = angular.module('trendr', [
   'ngRoute',
   'home',
-  'chart'
+  'chart',
+  // add additional modules here
+  'kevin'
 ]);
 
 trendr.config(function($routeProvider) {
@@ -16,6 +18,10 @@ trendr.config(function($routeProvider) {
     controller: 'chartController'
   })
   // add additional routes here
+  .when('/kevin', {
+    templateUrl: './kevin/kevinView.html',
+    controller: 'kevinController'
+  })
   .otherwise({
     redirectTo: '/'
   });
