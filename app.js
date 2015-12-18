@@ -12,9 +12,18 @@ app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
 //client side package manager
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+// Parse
+app.use(bodyParser.json());
+// Parse forms (signup/login)
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // process.env.PORT lets the port be set by Heroku
 var port = (process.env.PORT || 3000);
+
+app.get('/api', function(req, res) {
+  //
+  res.send(200);
+}
 
 app.listen(port);
 
