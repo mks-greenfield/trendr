@@ -22,11 +22,16 @@ _.mixin({
 Twitter Config
 **************************************************************/
 
+var consumer_key = process.env.CONSUMER_KEY || config.keys.consumer_key;
+var consumer_secret = process.env.CONSUMER_SECRET || config.keys.consumer_secret;
+var access_token_key = process.env.ACCESS_TOKEN_KEY || config.keys.access_token_key;
+var access_token_secret = process.env.ACCESS_TOKEN_SECRET || config.keys.access_token_secret;
+
 var client = new twitter({
-  consumer_key: config.keys.consumer_key,
-  consumer_secret: config.keys.consumer_secret,
-  access_token_key: config.keys.access_token_key,
-  access_token_secret: config.keys.access_token_secret
+  consumer_key: consumer_key,
+  consumer_secret: consumer_secret,
+  access_token_key: access_token_key,
+  access_token_secret: access_token_secret
 });
 
 /*************************************************************
