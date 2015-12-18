@@ -21,6 +21,13 @@ _.mixin({
 /*************************************************************
 Twitter Config
 **************************************************************/
+
+//Alternatively we can do this: set these locally
+// process.env.CONSUMER_KEY = '';
+// process.env.CONSUMER_SECRET = '';
+// process.env.ACCESS_TOKEN_KEY = '';
+// process.env.ACCESS_TOKEN_SECRET = '';
+
 var consumer_key = process.env.CONSUMER_KEY;
 var consumer_secret = process.env.CONSUMER_SECRET;
 var access_token_key = process.env.ACCESS_TOKEN_KEY;
@@ -31,6 +38,11 @@ var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
 // config.keys.consumer_secret
 // config.keys.access_token_key
 // config.keys.access_token_secret
+
+var consumer_key = process.env.CONSUMER_KEY;
+var consumer_secret = process.env.CONSUMER_SECRET;
+var access_token_key = process.env.ACCESS_TOKEN_KEY;
+var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
 
 var client = new twitter({
   consumer_key: consumer_key,

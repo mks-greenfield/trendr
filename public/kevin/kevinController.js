@@ -1,5 +1,5 @@
 angular.module('kevin', [])
 
-.controller('kevinController', function($scope) {
+.controller('KevinController', function($scope) {
   $scope.message = "Kevin's div"
 });
