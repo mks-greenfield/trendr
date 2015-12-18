@@ -1,5 +1,5 @@
 angular.module('home', [])
 
 .controller('homeController', function($scope) {
-  $scope.data = 'Data to be displayed here'
+  $scope.message = "Welcome to the home page"
 })
