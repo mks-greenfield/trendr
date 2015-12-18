@@ -27,7 +27,6 @@ angular.module('chart', ['chart.js'])
   var spinner = new Spinner(opts)
 
   $scope.getTrends = function() {
-    // $location.url('/chart');
     spinner.spin(target);
     $http({
         method: 'GET',
@@ -38,15 +37,14 @@ angular.module('chart', ['chart.js'])
 
   var successCallback = function(response) {
     spinner.stop();
-    response = {test1: 1, test3: 3}
-    var responseObj = response
+    console.log("response.data", response.data);
     $scope.labels = [];
     $scope.data = [];
 
 
-    for (var key in responseObj) {
+    for (var key in response.data) {
       $scope.labels.push(key);
-      $scope.data.push(responseObj[key]);
+      $scope.data.push(response.data[key]);
     }
   };
   var errorCallback = function() {
