@@ -1,20 +1,26 @@
 var trendr = angular.module('trendr', [
   'ngRoute',
   'home',
-  'chart'
+  'chart',
+  // add additional modules here
+  'kevin'
 ]);
 
 trendr.config(function($routeProvider) {
   $routeProvider
-  // havent got routing to work completely yet, show chart on root route
 
-  // .when('/', {
-  //   templateUrl: './home/homeView.html',
-  //   controller: 'homeController'
-  // })
   .when('/', {
+    templateUrl: './home/homeView.html',
+    controller: 'homeController'
+  })
+  .when('/chart', {
     templateUrl: './chart/chartView.html',
     controller: 'chartController'
+  })
+  // add additional routes here
+  .when('/kevin', {
+    templateUrl: './kevin/kevinView.html',
+    controller: 'kevinController'
   })
   .otherwise({
     redirectTo: '/'
