@@ -2,8 +2,12 @@ var trendr = angular.module('trendr', [
   'ngRoute',
   'home',
   'chart',
-  // add additional modules here
-  'kevin'
+  'brandon',
+  'geetha',
+  'polina',
+  'kevin',
+  'simon'
+  // add additional module names here
 ]);
 
 trendr.config(function($routeProvider) {
@@ -11,17 +15,34 @@ trendr.config(function($routeProvider) {
 
   .when('/', {
     templateUrl: './home/homeView.html',
-    controller: 'homeController'
+    controller: 'HomeController'
   })
   .when('/chart', {
     templateUrl: './chart/chartView.html',
-    controller: 'chartController'
+    controller: 'ChartController'
   })
-  // add additional routes here
+  .when('/brandon', {
+    templateUrl: './brandon/brandonView.html',
+    controller: 'BrandonController'
+  })
+  .when('/geetha', {
+    templateUrl: './geetha/geethaView.html',
+    controller: 'GeethaController'
+  })
   .when('/kevin', {
     templateUrl: './kevin/kevinView.html',
-    controller: 'kevinController'
+    controller: 'KevinController'
   })
+  .when('/polina', {
+    templateUrl: './polina/polinaView.html',
+    controller: 'PolinaController'
+  })
+  .when('/simon', {
+    templateUrl: './simon/simonView.html',
+    controller: 'SimonController'
+  })
+  // add additional routes here
+
   .otherwise({
     redirectTo: '/'
   });
