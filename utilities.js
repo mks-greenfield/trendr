@@ -23,10 +23,10 @@ Twitter Config
 **************************************************************/
 
 var client = new twitter({
-  consumer_key: 'XTNRAKqNkOUDIVkGjl77PDopz',
-  consumer_secret: 'Wl69RdzKPTz0XqRcH8c5Qjr8278DMBEubRLdngHkr5Jjrt6ANr',
-  access_token_key: '43156220-mPD0tx2xzI0buaRU3thZ4eDiOjfp7FsIrUNg0mHdl',
-  access_token_secret: 'FEvVa3flPoZAV9UraDDDLyaMqgj3sSkckIMAoJoXdy2Al'
+  consumer_key: '',
+  consumer_secret: '',
+  access_token_key: '',
+  access_token_secret: ''
 });
 
 /*************************************************************
