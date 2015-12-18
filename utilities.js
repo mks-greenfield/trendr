@@ -33,10 +33,10 @@ var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
 // config.keys.access_token_secret
 
 var client = new twitter({
-  consumer_key: config.keys.consumer_key,
-  consumer_secret: config.keys.consumer_secret,
-  access_token_key: config.keys.access_token_key,
-  access_token_secret: config.keys.access_token_secret
+  consumer_key: consumer_key,
+  consumer_secret: consumer_secret,
+  access_token_key: access_token_key,
+  access_token_secret: access_token_secret
 });
 
 /*************************************************************
