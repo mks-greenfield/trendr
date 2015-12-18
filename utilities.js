@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var fs = require('fs');
 var twitter = require('twitter');
-var config = require('./config');
+// var config = require('./config');
 /*************************************************************
 Add Underscore Mixin to sort by keys
 **************************************************************/
