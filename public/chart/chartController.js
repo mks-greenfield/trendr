@@ -1,18 +1,33 @@
 angular.module('chart', ['chart.js'])
 
-.controller('chartController', function($scope) {
+.controller('chartController', function($scope, $http) {
   // get real data from JSON data
-
-  $scope.labels = [];
-  $scope.data = [];
-
-  var dataObj = {
-    "test1": 100,
-    "test2": 300
+  $scope.getTrends = function() {
+    // $location.url('/chart');
+    $http({
+        method: 'GET',
+        url: '/api'
+      })
+      .then(successCallback, errorCallback);
   }
 
-  for (var key in dataObj) {
-    $scope.labels.push(key);
-    $scope.data.push(dataObj[key]);
-  }
+  var successCallback = function(response) {
+    response = {test: 1, three: 3}
+    var responseObj = response
+    $scope.labels = [];
+    $scope.data = [];
+
+    // var responseObj = {
+    //   "test1": 100,
+    //   "test2": 300
+    // }
+
+    for (var key in responseObj) {
+      $scope.labels.push(key);
+      $scope.data.push(responseObj[key]);
+    }
+  };
+  var errorCallback = function() {
+    // handle error
+  };
 });

@@ -21,11 +21,12 @@ var port = (process.env.PORT || 3000);
 
 app.get('/api', function(req, res) {
 
-  utilities.returnTrendsByCountry(function(results) {
-    console.log("results", results);
+  // utilities.returnTrendsByCountry(function(results) {
+    // console.log("results", results);
     res.status(201);
-    res.send(results);
-  });
+    res.send();
+    // res.send(results);
+  // });
 });
 
 app.listen(port);
