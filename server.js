@@ -3,8 +3,15 @@ var request = require('request');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
-var utilities = require('./utilities');
 
+/*************************************************************
+Local Dependencies
+**************************************************************/
+var countryTrends = require('./utilities/countryTrends');
+
+/*************************************************************
+Express Config
+**************************************************************/
 var app = express();
 app.use(morgan('combined'));
 //load client side assets
@@ -16,17 +23,25 @@ app.use(bodyParser.json());
 // Parse forms (signup/login)
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// process.env.PORT lets the port be set by Heroku
-var port = (process.env.PORT || 5000);
+/*************************************************************
+Routes
+**************************************************************/
 
 app.get('/api', function(req, res) {
 
-  utilities.returnTrendsByCountry(function(results) {
+  countryTrends.returnTrendsByCountry(function(results) {
     console.log("results", results);
     res.status(201);
     res.send(results);
   });
 });
+
+/*************************************************************
+Port
+**************************************************************/
+
+// process.env.PORT lets the port be set by Heroku
+var port = (process.env.PORT || 5000);
 
 app.listen(port);
 console.log("Listening on: " + port);
