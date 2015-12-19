@@ -1,5 +1,4 @@
 var _ = require('underscore');
-var fs = require('fs');
 var twitter = require('twitter');
 
 /*************************************************************
@@ -22,16 +21,12 @@ _.mixin({
 Twitter Config
 All of these process variables live in .env
 **************************************************************/
-var consumer_key = process.env.CONSUMER_KEY;
-var consumer_secret = process.env.CONSUMER_SECRET;
-var access_token_key = process.env.ACCESS_TOKEN_KEY;
-var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
 
 var client = new twitter({
-  consumer_key: consumer_key,
-  consumer_secret: consumer_secret,
-  access_token_key: access_token_key,
-  access_token_secret: access_token_secret
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 /*************************************************************
