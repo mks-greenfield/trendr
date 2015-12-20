@@ -62,7 +62,7 @@ exports.returnTrendsByCountry = function(callback) {
         //changes from ascending to descending sort
         return -(value);
       });
-    }
+    };
 
     countries = parseResponse(tweets);
 
@@ -70,5 +70,5 @@ exports.returnTrendsByCountry = function(callback) {
       callback(countries);
     }
   });
-}
+};
 

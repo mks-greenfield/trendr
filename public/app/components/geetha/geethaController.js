@@ -1,5 +1,5 @@
 angular.module('geetha', [])
 
 .controller('GeethaController', function($scope) {
-  $scope.message = "Geetha's div"
+  $scope.message = "Geetha's div";
 });
