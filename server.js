@@ -31,7 +31,7 @@ app.get('/api', function(req, res) {
 
   countryTrends.returnTrendsByCountry(function(results) {
     console.log("results", results);
-    res.status(201);
+    res.status(200);
     res.send(results);
   });
 });
