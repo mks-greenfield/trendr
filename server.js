@@ -3,6 +3,9 @@ var request = require('request');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
+var mongoose = require('mongoose');
+
+var Trend = require('./mongodb/models/trend.js');
 
 /*************************************************************
 Local Dependencies
@@ -34,6 +37,19 @@ app.get('/api', function(req, res) {
     res.status(200);
     res.send(results);
   });
+});
+
+app.get('/db', function(req, res) {
+  // console.log();
+  Trend.find(function(err, trends) {
+    if (err) {
+      throw err;
+    }
+    console.log('TRENDS', trends);
+    res.status(200);
+    res.send(trends);
+  });
+  // console.log('RESULTSSSSSS', results);
 });
 
 /*************************************************************
