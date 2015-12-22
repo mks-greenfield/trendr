@@ -40,7 +40,6 @@ app.get('/api', function(req, res) {
 });
 
 app.get('/db', function(req, res) {
-  // console.log();
   Trend.find(function(err, trends) {
     if (err) {
       throw err;
@@ -49,7 +48,6 @@ app.get('/db', function(req, res) {
     res.status(200);
     res.send(trends);
   });
-  // console.log('RESULTSSSSSS', results);
 });
 
 /*************************************************************
