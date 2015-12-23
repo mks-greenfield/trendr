@@ -73,7 +73,7 @@ app.get('/test', function(req, res) {
   // Be careful not to call this same location twice or it will duplicate data in the DB.
   // Maybe need to figure out how to prevent this.
 
-  // var params = {id: 2487956}; // San Francisco
+   var params = {id: 2487956}; // San Francisco
   // var params = {id: 2487889}; // San Diego
   // var params = {id: 2379574}; // Chicago
   // var params = {id: 2450022}; // Miami
