@@ -67,9 +67,27 @@ var client = new Twitter({
 });
 
 app.get('/test', function(req, res) {
-  console.log('testing');
-  var params = {id: 2487956}; // San Francisco
-  // var params = {lat: 37.7833, long: 122.4167}
+
+  // specify id (WOEID) for each city then make a get request to the end point.
+  // These are stored on my local DB atm (Simon).
+  // Be careful not to call this same location twice or it will duplicate data in the DB.
+  // Maybe need to figure out how to prevent this.
+
+  // var params = {id: 2487956}; // San Francisco
+  // var params = {id: 2487889}; // San Diego
+  // var params = {id: 2379574}; // Chicago
+  // var params = {id: 2450022}; // Miami
+  // var params = {id: 2459115}; // New York (City)
+  // var params = {id: 2514815}; // Washington (D.C.)
+  // var params = {id: 2490383}; // Seattle
+  // var params = {id: 2436704}; // Las Vegas
+  // var params = {id: 2475687}; // Portland
+  // var params = {id: 2391279}; // Denver
+  // var params = {id: 2486340}; // Sacramento
+  // var params = {id: 2442047}; // Los Angeles
+  // var params = {id: 2471390}; // Phoenix
+  // var params = {id: }; // 
+
   client.get('trends/place', params, function(error, tweets, response){
     if (error) {
       console.log('ERROR OCCURED', error);
