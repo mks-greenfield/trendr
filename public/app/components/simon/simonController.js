@@ -7,11 +7,11 @@ angular.module('simon', [])
         url: '/test'
       })
       .then(successCallback, errorCallback);
-  }
+  };
 
   var successCallback = function(response) {
     // console.log("response.data", response.data);
-  }
+  };
     
   var errorCallback = function() {
     // handle error

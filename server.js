@@ -105,8 +105,8 @@ app.get('/test', function(req, res) {
       .save(function(err) {
         if(err) throw err;
         console.log('trend saved!');
-      })
-    };
+      });
+    }
 
     res.status(200);
     res.send(tweets);
