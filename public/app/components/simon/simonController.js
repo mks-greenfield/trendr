@@ -1,7 +1,5 @@
 angular.module('simon', [])
 
-<<<<<<< HEAD
-=======
 .controller('SimonController', function($scope, $http) {
   $scope.getStuff = function() {
     $http({
@@ -18,5 +16,4 @@ angular.module('simon', [])
   var errorCallback = function() {
     // handle error
   };
->>>>>>> e7234f9e82f7bf50bade40979e2458aa33367cf1
 });
