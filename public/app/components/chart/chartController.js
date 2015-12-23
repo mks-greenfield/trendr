@@ -31,7 +31,7 @@ angular.module('chart', ['chart.js'])
     spinner.spin(target);
     $http({
         method: 'GET',
-        url: '/api'
+        url: '/db'
       })
       .then(successCallback, errorCallback);
   };
@@ -42,10 +42,11 @@ angular.module('chart', ['chart.js'])
     $scope.labels = [];
     $scope.data = [];
 
-
-    for (var key in response.data) {
-      $scope.labels.push(key);
-      $scope.data.push(response.data[key]);
+    for (var i = 0; i < response.data.length; i++) {
+      // console.log('WHAT IS GOING ON', response.data[i]);
+      console.log('COUNTRY', response.data[i].country);
+      $scope.labels.push(response.data[i].country);
+      $scope.data.push(response.data[i].trend_volume);
     }
   };
   var errorCallback = function() {
