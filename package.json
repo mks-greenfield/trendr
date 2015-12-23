@@ -1,27 +1,35 @@
 {
   "name": "trendr",
   "version": "1.0.0",
-  "description": "Trendr --------",
-  "main": "index.js",
+  "description": "Trendr",
+  "main": "server.js",
   "scripts": {
+    "start": "nf start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kcvan/trendr.git"
+    "url": "https://github.com/mks-greenfield/trendr.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Team Trendr",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kcvan/trendr/issues"
+    "url": "https://github.com/mks-greenfield/trendr/issues"
   },
-  "homepage": "https://github.com/kcvan/trendr#readme",
+  "homepage": "https://mks-trendr.herokuapp.com/#/ ",
   "dependencies": {
     "body-parser": "^1.14.2",
     "bower": "^1.7.1",
     "express": "^4.13.3",
+    "foreman": "1.4.1",
     "fs": "0.0.2",
+    "grunt": "0.4.5",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-notify": "0.4.3",
+    "mongodb": "2.0.52",
+    "mongoose": "4.3.3",
     "morgan": "^1.6.1",
     "path": "^0.12.7",
     "request": "^2.67.0",

@@ -1,7 +1,6 @@
 var _ = require('underscore');
-var fs = require('fs');
 var twitter = require('twitter');
-// var config = require('./config');
+
 /*************************************************************
 Add Underscore Mixin to sort by keys
 **************************************************************/
@@ -20,35 +19,14 @@ _.mixin({
 
 /*************************************************************
 Twitter Config
+All of these process variables live in .env
 **************************************************************/
 
-//Alternatively we can do this: set these locally
-// process.env.CONSUMER_KEY = '';
-// process.env.CONSUMER_SECRET = '';
-// process.env.ACCESS_TOKEN_KEY = '';
-// process.env.ACCESS_TOKEN_SECRET = '';
-
-var consumer_key = process.env.CONSUMER_KEY;
-var consumer_secret = process.env.CONSUMER_SECRET;
-var access_token_key = process.env.ACCESS_TOKEN_KEY;
-var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
-
-//Commenting out local config
-// config.keys.consumer_key;
-// config.keys.consumer_secret
-// config.keys.access_token_key
-// config.keys.access_token_secret
-
-var consumer_key = process.env.CONSUMER_KEY;
-var consumer_secret = process.env.CONSUMER_SECRET;
-var access_token_key = process.env.ACCESS_TOKEN_KEY;
-var access_token_secret = process.env.ACCESS_TOKEN_SECRET;
-
 var client = new twitter({
-  consumer_key: consumer_key,
-  consumer_secret: consumer_secret,
-  access_token_key: access_token_key,
-  access_token_secret: access_token_secret
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 /*************************************************************
@@ -84,7 +62,7 @@ exports.returnTrendsByCountry = function(callback) {
         //changes from ascending to descending sort
         return -(value);
       });
-    }
+    };
 
     countries = parseResponse(tweets);
 
@@ -92,25 +70,5 @@ exports.returnTrendsByCountry = function(callback) {
       callback(countries);
     }
   });
-}
-
-/*************************************************************
-Example of writing to a file
-**************************************************************/
-
-// fs.writeFile('./tweets.txt', tweets, function(err){
-//   if(err){console.log(err)}
-// })
-
-/*************************************************************
-Histogram Function
-**************************************************************/
-
-var histogram = function(ar){
-  return reduce(ar, function(obj, key){
-    obj[key] = obj[key] || 0;
-    obj[key]++;
-    return obj;
-  }, {});
 };
 
