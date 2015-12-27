@@ -12,6 +12,7 @@ var LocationTrend = require('./mongodb/models/locationTrend.js');
 Local Dependencies
 **************************************************************/
 var countryTrends = require('./utilities/countryTrends');
+var usRoutes = require('./usRoutes');
 
 /*************************************************************
 Express Config
@@ -26,6 +27,8 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(bodyParser.json());
 // Parse forms (signup/login)
 app.use(bodyParser.urlencoded({ extended: true }));
+//Routes for /api/us/
+app.use('/api/us', usRoutes);
 
 /*************************************************************
 Routes
