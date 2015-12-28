@@ -2,25 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db = require('./mongodb/config');
 var USTrend = require('./mongodb/models/USTownTrend');
-var async = require('async');
 var _ = require('underscore');
 var query = require('./queries');
-
-/*************************************************************
-Add Underscore Mixin to sort by keys
-**************************************************************/
-
-_.mixin({
-  'sortKeysBy': function (obj, comparator) {
-    var keys = _.sortBy(_.keys(obj), function (key) {
-      return comparator ? comparator(obj[key], key) : key;
-    });
-
-    return _.object(keys, _.map(keys, function (key) {
-      return obj[key];
-    }));
-  }
-});
 
 /*************************************************************
 GET /api/us/cities
@@ -164,7 +147,6 @@ router.get('/trends/:trendname/state', function(req, res) {
       res.send(result);
     }
   });
-
 });
 
 router.get('/trends/:trendname/volume', function(req, res) {
@@ -182,58 +164,15 @@ GET /api/us/country/weekly
 //returns all trends today in the U.S. ordered by number of cities having that trend.
 router.get('/country/today', function(req, res) {
 
-  var startDate = new Date()  // Current date
-  startDate.setHours(0)   // Set the hour, minute and second components to 0
-  startDate.setMinutes(0)
-  startDate.setSeconds(0)
-
-  var trend_data = {};
-
-  //find all trends created today
-  USTrend.distinct("trend_name")
-         .where({created_at: {$gt: startDate, $lt: new Date(),}})
-         .exec(function(err, trends) {
-            if (err) {
-              console.log("error", err);
-
-              res.status(500);
-              res.send("Internal Server Error. Cannot read from database at this time.")
-            } else {
-
-              async.each(trends, function(trend, next) {
-
-                //return count of which cities had that trend today
-                USTrend.distinct("location_name")
-                       .where({trend_name : trend, created_at: {$gt: startDate, $lt: new Date(),}})
-                       .count()
-                       .exec(function(err, count) {
-                          if (err) {
-                            console.log("error", err);
-
-                          } else {
-                            //console.log("count", count);
-                            trend_data[trend] = count;
-                            next();
-                          }
-                       });   
-              }, function(error){
-                  if(error) {
-                    console.log('A town failed to process');
-                  } else {
-                    //console.log('All towns have been processed successfully');
-                    
-                    //sort by city count in descending order
-                    var result =  _.sortKeysBy(trend_data, function (value, key) {
-                      //changes from ascending to descending sort
-                      return -(value);
-                    });
-
-                    res.status(200);
-                    res.send(result);
-                  }
-              });
-            }
-         });
+  query.usTrendsToday(function(result) {
+    if (_.isEmpty(result)) {
+      res.status(404);
+      res.send("Currently no top trends for today. Check again later.");
+    } else {
+      res.status(200);
+      res.send(result);
+    }
+  });
 });
 
 router.get('/country/weekly', function(req, res) {
