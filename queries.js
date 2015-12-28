@@ -4,6 +4,7 @@ var db = require('./mongodb/config');
 var USTrend = require('./mongodb/models/USTownTrend');
 var async = require('async');
 var utilities = require('./utilities/shared/shared');
+var _ = require('underscore');
 
 /*************************************************************
 Global Time Vars
@@ -39,6 +40,71 @@ Citywide
 exports.distinctCities = function(cb) {
   USTrend.distinct("location_name")
          .exec(cb);
+}
+
+//Return all distinct trends for a city in the last 7 days
+exports.weeklyTrendsByCity = function(cityName, cb) {
+  USTrend.distinct("trend_name")
+         .where({location_name: cityName, 
+                 created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .exec(cb);
+}
+
+//Returns tweet volume for a trend in a city over the last 7 days
+exports.weeklyTweetVolumeByCityTrend = function(trendName, cityName, cb) {
+  USTrend.find({location_name: cityName, trend_name: trendName})
+         .where({created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .select('trend_name tweet_volume created_at')
+         //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
+         .exec(cb);
+}
+
+//Returns the distinct trends and tweet volume for that city for 
+//the last 7 days ordered by tweet volume.
+exports.weeklyTweetVolumeRankByCity = function(cityName, cb) {
+  var city_trend_count = {};
+
+  exports.weeklyTrendsByCity(cityName, function(err, trends) {
+
+    if (err) {
+      console.log("error", err);
+    } else {
+
+      async.each(trends, function(trend, next) {
+
+        exports.weeklyTweetVolumeByCityTrend(trend, cityName, function(err, result) {
+          if (err) {
+            console.log("error", err);
+          } else {
+
+            //ASSUMPTION: WE ONLY PULL TRENDS ONCE A DAY
+            //THEREFORE, THERE SHOULDN'T BE DOUBLED TREND VOLUME
+            //FOR A DAY
+
+            //aggregate the trend volume over last 7 days
+            //if trend volume is null, count is set to 0
+            var count =  _.reduce(result, function(memo, item) {
+                            var num = item.tweet_volume || 0;
+                            return memo + num; 
+                          }, 0);
+
+            city_trend_count[trend] = count;
+            next();
+          }
+        })
+
+      }, function(err) {
+        if (err) {
+          console.log("A trend failed to process.");
+
+        } else {
+          //sort by keys (tweet volume) in descending order
+          var result = utilities.sortKeysBy(city_trend_count);
+          cb(result);   
+        }
+      });
+    }
+  });
 }
 
 /*************************************************************

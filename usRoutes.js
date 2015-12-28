@@ -32,13 +32,22 @@ router.get('/cities/:cityname/today', function(req, res) {
   res.send('returns trends and tweet volume for that city for today ordered by tweet volume.');
 });
 
+//Returns the distinct trends and tweet volume for that city for the last 7 days ordered by tweet volume.
 router.get('/cities/:cityname/weeklyvolume', function(req, res) {
-  var city = req.params.cityname;
+  var cityName = req.params.cityname;
 
-  res.status(200);
-  res.send('returns the 10 top trends and tweet volume for that city for the last 7 days ordered by tweet volume.');
+  query.weeklyTweetVolumeRankByCity(cityName,function(result) {
+    if (_.isEmpty(result)) {
+      res.status(404);
+      res.send("Currently no top trends for this city. Did you capitalize the city name?");
+    } else {
+      res.status(200);
+      res.send(result);
+    }
+  });
 });
 
+//TODO
 router.get('/cities/:cityname/weeklytrends', function(req, res) {
   var city = req.params.cityname;
 
@@ -68,6 +77,7 @@ router.get('/states', function(req, res) {
   });
 });
 
+//TODO
 router.get('/states/:statename/today', function(req, res) {
   var state = req.params.statename;
 
@@ -75,6 +85,7 @@ router.get('/states/:statename/today', function(req, res) {
   res.send('returns trends and tweet volume for that state for today ordered by aggregate tweet volume.');
 });
 
+//TODO
 router.get('/states/:statename/weeklyvolume', function(req, res) {
   var state = req.params.statename;
 
@@ -82,6 +93,7 @@ router.get('/states/:statename/weeklyvolume', function(req, res) {
   res.send('returns the 10 top trends and tweet volume for that state for the last 7 days ordered by aggregate tweet volume in its cities.');
 });
 
+//TODO
 router.get('/states/:statename/weeklytrends', function(req, res) {
   var state = req.params.statename;
 
@@ -147,6 +159,7 @@ router.get('/trends/:trendname/state', function(req, res) {
   });
 });
 
+//TODO
 router.get('/trends/:trendname/volume', function(req, res) {
   var trend = req.params.trendname;
   
@@ -173,6 +186,7 @@ router.get('/country/today', function(req, res) {
   });
 });
 
+//TODO
 router.get('/country/weekly', function(req, res) {
 
   res.status(200);
