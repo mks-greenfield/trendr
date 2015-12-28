@@ -11,7 +11,7 @@ var LocationTrend = require('./mongodb/models/locationTrend.js');
 /*************************************************************
 Local Dependencies
 **************************************************************/
-var countryTrends = require('./utilities/countryTrends');
+var countryTrends = require('./utilities/twitterAPI/countryTrends');
 var usRoutes = require('./usRoutes');
 
 /*************************************************************
@@ -27,11 +27,14 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(bodyParser.json());
 // Parse forms (signup/login)
 app.use(bodyParser.urlencoded({ extended: true }));
-//Routes for /api/us/
+
+/*************************************************************
+ROUTES FOR /api/us/*
+**************************************************************/
 app.use('/api/us', usRoutes);
 
 /*************************************************************
-Routes
+TEST ROUTES
 **************************************************************/
 
 app.get('/api', function(req, res) {

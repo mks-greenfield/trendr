@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var twitter = require('twitter');
-var utilities = require('./shared/shared');
+var utilities = require('../shared/shared');
 
 /*************************************************************
 Twitter Config
