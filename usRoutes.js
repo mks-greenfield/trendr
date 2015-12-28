@@ -152,11 +152,30 @@ router.get('/trends/:trendname/city', function(req, res) {
          });
 });
 
+//Returns which states had the trend in the last 7 days.
 router.get('/trends/:trendname/state', function(req, res) {
   var trend = req.params.trendname;
-  
-  res.status(200);
-  res.send("returns which states had the trend in the last 7 days.");
+
+  var startDate = new Date()  // Current date
+  startDate.setDate(startDate.getDate()-7) // Subtract 7 days
+  startDate.setHours(0)   // Set the hour, minute and second components to 0
+  startDate.setMinutes(0)
+  startDate.setSeconds(0)
+
+  USTrend.distinct("state")
+         .where({trend_name : trend, created_at: {$gt: startDate, $lt: new Date(),}})
+         .exec(function(err, item) {
+            if (err) {
+              console.log("error", err);
+
+              res.status(500);
+              res.status("Internal Server Error. Cannot read from database at this time.")
+            } else {
+              console.log("item", item);
+              res.status(200);
+              res.send(item);
+            }
+         });
 });
 
 router.get('/trends/:trendname/volume', function(req, res) {
