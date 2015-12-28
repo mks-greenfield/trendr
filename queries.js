@@ -117,6 +117,73 @@ exports.distinctStates = function(cb) {
          .exec(cb);
 }
 
+//Return all distinct trends for a state in the last 7 days
+exports.weeklyTrendsByState = function(stateName, cb) {
+  USTrend.distinct("trend_name")
+         .where({state: stateName, 
+                 created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .exec(cb);
+}
+
+//Returns tweet volume for a trend in a state over the last 7 days
+exports.weeklyTweetVolumeByStateTrend = function(trendName, stateName, cb) {
+  USTrend.find({state: stateName, trend_name: trendName})
+         .where({created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .select('location_name trend_name tweet_volume created_at')
+         //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
+         .exec(cb);
+}
+
+//Returns the distinct trends and tweet volume for that state for 
+//the last 7 days ordered by aggregate tweet volume across its
+//cities
+exports.weeklyTweetVolumeRankByState = function(stateName, cb) {
+  var state_trend_count = {};
+
+  exports.weeklyTrendsByState(stateName, function(err, trends) {
+
+    if (err) {
+      console.log("error", err);
+    } else {
+
+      async.each(trends, function(trend, next) {
+
+        exports.weeklyTweetVolumeByStateTrend(trend, stateName, function(err, result) {
+          if (err) {
+            console.log("error", err);
+          } else {
+
+            //ASSUMPTION: WE ONLY PULL TRENDS ONCE A DAY
+            //THEREFORE, THERE SHOULDN'T BE DOUBLED TREND VOLUME
+            //FOR A DAY
+
+            //aggregate the trend volume over last 7 days
+            //if trend volume is null, count is set to 0
+            var count =  _.reduce(result, function(memo, item) {
+                            var num = item.tweet_volume || 0;
+                            return memo + num; 
+                          }, 0);
+
+            //console.log("count", count);
+
+            state_trend_count[trend] = count;
+            next();
+          }
+        })
+
+      }, function(err) {
+        if (err) {
+          console.log("A trend failed to process.");
+
+        } else {
+          //sort by keys (tweet volume) in descending order
+          var result = utilities.sortKeysBy(state_trend_count);
+          cb(result);   
+        }
+      });
+    }
+  });
+}
 /*************************************************************
 By Trend
 **************************************************************/
