@@ -37,13 +37,36 @@ router.get('/cities/:cityname/weeklytrends', function(req, res) {
 
 /*************************************************************
 GET /api/us/states
-GET /api/us/states?name=<statename>&q=today
-GET /api/us/states?name=<statename>&q=weeklyvolume
-GET /api/us/states?name=<statename>&q=weeklytrends
+GET /api/us/states/<statename>/today
+GET /api/us/states/<statename>/weeklyvolume
+GET /api/us/states/<statename>/weeklytrends
 **************************************************************/
 
 router.get('/states', function(req, res) {
-  res.send('testing this route');
+
+  res.status(200);
+  res.send('returns all states that have trend data.');
+});
+
+router.get('/states/:statename/today', function(req, res) {
+  var state = req.params.statename;
+
+  res.status(200);
+  res.send('returns trends and tweet volume for that state for today ordered by aggregate tweet volume.');
+});
+
+router.get('/states/:statename/weeklyvolume', function(req, res) {
+  var state = req.params.statename;
+
+  res.status(200);
+  res.send('returns the 10 top trends and tweet volume for that state for the last 7 days ordered by aggregate tweet volume in its cities.');
+});
+
+router.get('/states/:statename/weeklytrends', function(req, res) {
+  var state = req.params.statename;
+
+  res.status(200);
+  res.send('returns the 10 top trends for that state for the last 7 days ordered by the aggregate number of days trending in its cities.');
 });
 
 /*************************************************************
