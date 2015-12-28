@@ -1,21 +1,38 @@
 var express = require('express');
 var router = express.Router();
-var url = require('url');
 
 /*************************************************************
 GET /api/us/cities
-GET /api/us/cities?name=<cityname>&q=today
-GET /api/us/cities?name=<cityname>&q=weeklyvolume
-GET /api/us/cities?name=<cityname>&q=weeklytrends
+GET /api/us/cities/<cityname>/today
+GET /api/us/cities/<cityname>/weeklyvolume
+GET /api/us/cities/<cityname>/weeklytrends
 **************************************************************/
 
 router.get('/cities', function(req, res) {
 
-  var url_parts = url.parse(req.url, true);
-  var query = url_parts.query;
+  res.status(200);
+  res.send('returns all cities that have trend data.');
+});
 
-  console.log("QUERY", query);
-  res.send('testing this route');
+router.get('/cities/:cityname/today', function(req, res) {
+  var city = req.params.cityname;
+
+  res.status(200);
+  res.send('returns trends and tweet volume for that city for today ordered by tweet volume.');
+});
+
+router.get('/cities/:cityname/weeklyvolume', function(req, res) {
+  var city = req.params.cityname;
+
+  res.status(200);
+  res.send('returns the 10 top trends and tweet volume for that city for the last 7 days ordered by tweet volume.');
+});
+
+router.get('/cities/:cityname/weeklytrends', function(req, res) {
+  var city = req.params.cityname;
+
+  res.status(200);
+  res.send('returns the 10 top trends for that city for the last 7 days ordered by number of days trending.');
 });
 
 /*************************************************************
@@ -59,7 +76,7 @@ router.get('/country/weekly', function(req, res) {
 
 //The 404 Route (ALWAYS Keep this as the last route)
 router.get('*', function(req, res){
-  
+
   res.status(404);
   res.send("Not a valid route.");
 });
