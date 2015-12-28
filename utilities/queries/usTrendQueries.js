@@ -1,10 +1,10 @@
 require('dotenv').load();
 
-var db = require('./mongodb/config');
-var USTrend = require('./mongodb/models/USTownTrend');
-var async = require('async');
-var utilities = require('./utilities/shared/shared');
+var db = require('../../mongodb/config');
+var USTrend = require('../../mongodb/models/USTownTrend');
+var utilities = require('../shared/shared');
 var _ = require('underscore');
+var async = require('async');
 
 /*************************************************************
 Global Time Vars
@@ -22,16 +22,6 @@ sevenDaysAgo.setDate(sevenDaysAgo.getDate()-7)
 sevenDaysAgo.setHours(0)
 sevenDaysAgo.setMinutes(0)
 sevenDaysAgo.setSeconds(0)
-
-var yesterday = new Date();
-yesterday.setDate(yesterday.getDate()-2);
-
-var startOfYesterday = new Date();
-startOfYesterday.setDate(startOfYesterday.getDate()-2);
-startOfYesterday.setHours(0)
-startOfYesterday.setMinutes(0)
-startOfYesterday.setSeconds(0)
-
 /*************************************************************
 Citywide
 **************************************************************/
