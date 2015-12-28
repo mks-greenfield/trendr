@@ -4,6 +4,7 @@ var db = require('./mongodb/config');
 var USTrend = require('./mongodb/models/USTownTrend');
 var async = require('async');
 var _ = require('underscore');
+var query = require('./queries');
 
 /*************************************************************
 Add Underscore Mixin to sort by keys
@@ -31,16 +32,14 @@ GET /api/us/cities/<cityname>/weeklytrends
 //Returns all cities that have trend data.
 router.get('/cities', function(req, res) {
 
-  USTrend.distinct("location_name", function(err, item) {
+  query.distinctCities(function(err, result) {
     if (err) {
       console.log("error", err);
-
       res.status(500);
-      res.send("Internal Server Error. Cannot read from database at this time");
+      res.send("Internal Server Error");
     } else {
-
       res.status(200);
-      res.send(item);
+      res.send(result);
     }
   });
 });
@@ -244,9 +243,7 @@ router.get('/country/today', function(req, res) {
                             trend_data[trend] = count;
                             next();
                           }
-                       });
-
-                  
+                       });   
               }, function(error){
                   if(error) {
                     console.log('A town failed to process');
