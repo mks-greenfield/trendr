@@ -49,6 +49,13 @@ exports.citiesTrendingThisWeek = function(trendName, cb) {
          .exec(cb);
 }
 
+exports.statesTrendingThisWeek = function(trendName, cb) {
+  USTrend.distinct("state")
+         .where({trend_name : trendName, 
+                 created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .exec(cb);
+}
+
 
 
 
