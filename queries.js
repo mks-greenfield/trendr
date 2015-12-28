@@ -10,3 +10,9 @@ exports.distinctCities = function(cb) {
          .exec(cb);
 }
 
+exports.distinctStates = function(cb) {
+  USTrend.distinct("state")
+         .exec(cb);
+}
+
+

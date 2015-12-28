@@ -75,17 +75,14 @@ GET /api/us/states/<statename>/weeklytrends
 //Returns all states that have trend data.
 router.get('/states', function(req, res) {
 
-  USTrend.distinct("state", function(err, item) {
+  query.distinctStates(function(err, result) {
     if (err) {
       console.log("error", err);
-
       res.status(500);
-      res.send("Internal Server Error. Cannot read from database at this time");
-
+      res.send("Internal Server Error");
     } else {
-
       res.status(200);
-      res.send(item);
+      res.send(result);
     }
   });
 });
