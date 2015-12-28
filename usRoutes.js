@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var db = require('./mongodb/config');
+var USTrend = require('./mongodb/models/USTownTrend');
 
 /*************************************************************
 GET /api/us/cities
@@ -42,10 +44,22 @@ GET /api/us/states/<statename>/weeklyvolume
 GET /api/us/states/<statename>/weeklytrends
 **************************************************************/
 
+//Returns all states that have trend data.
 router.get('/states', function(req, res) {
 
-  res.status(200);
-  res.send('returns all states that have trend data.');
+  USTrend.distinct("state", function(err, item) {
+    if (err) {
+      console.log("error", err);
+      
+      res.status(500);
+      res.send("Internal Server Error. Cannot read from database at this time");
+
+    } else {
+      // console.log("item", item);
+      res.status(200);
+      res.send(item);
+    }
+  });
 });
 
 router.get('/states/:statename/today', function(req, res) {
