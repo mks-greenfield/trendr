@@ -118,26 +118,18 @@ GET /api/us/trends/<trendname>/volume
 //returns all distinct trends in the last day
 router.get('/trends/day', function(req, res) {
 
-  var startDate = new Date()  // Current date
-  //startDate.setDate(startDate.getDate()-7) // Subtract 7 days
-  startDate.setHours(0)   // Set the hour, minute and second components to 0
-  startDate.setMinutes(0)
-  startDate.setSeconds(0)
+  query.distinctTrendsToday(function(err, result) {
+    if (err) {
+      console.log("error", err);
 
-  USTrend.distinct("trend_name")
-         .where({created_at: {$gt: startDate, $lt: new Date(),}})
-         .exec(function(err, item) {
-            if (err) {
-              console.log("error", err);
+      res.status(500);
+      res.send("Internal Server Error. Cannot read from database at this time.")
+    } else {
 
-              res.status(500);
-              res.send("Internal Server Error. Cannot read from database at this time.")
-            } else {
-
-              res.status(200);
-              res.send(item);
-            }
-         });
+      res.status(200);
+      res.send(result);
+    }
+  });
 });
 
 //Returns which cities had the trend in the last 7 days.
