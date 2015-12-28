@@ -25,7 +25,7 @@ router.get('/cities', function(req, res) {
   });
 });
 
-//Returns trends and tweet volume for that city for today ordered by tweet volume.
+//TODO
 router.get('/cities/:cityname/today', function(req, res) {
   var city = req.params.cityname;
 

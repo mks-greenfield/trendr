@@ -191,7 +191,7 @@ By Trend
 //returns all distinct trends in the last day
 exports.distinctTrendsToday = function(cb) {
   USTrend.distinct("trend_name")
-         .where({created_at: {$gt: startOfYesterday, $lt: yesterday}})
+         .where({created_at: {$gt: startofToday, $lt: today}})
          .exec(cb);
 }
 
@@ -204,11 +204,11 @@ exports.statesTrendingThisWeek = function(trendName, cb) {
 }
 
 //Returns a count of cities having a trend yesterday.
-exports.cityCountTrendingYesterday = function(trendName, cb) {
+exports.cityCountTrendingToday = function(trendName, cb) {
   USTrend.distinct("location_name")
          .count()
-         .where({trend_name : trendName, 
-                 created_at: {$gt: startOfYesterday, $lt: yesterday}})
+         .where({trend_name : trendName,
+                 created_at: {$gt: startofToday, $lt: today}})
          .exec(cb);
 }
 
@@ -238,7 +238,7 @@ exports.usTrendsToday = function(cb) {
       async.each(trends, function(trend, next) {
 
         //return count of which cities have that trend
-        exports.cityCountTrendingYesterday(trend, function(err, count) {
+        exports.cityCountTrendingToday(trend, function(err, count) {
           if (err) {
             console.log("error", err); 
 
