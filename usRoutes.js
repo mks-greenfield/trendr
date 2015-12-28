@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db = require('./mongodb/config');
-var USTrend = require('./mongodb/models/USTownTrend');
-var _ = require('underscore');
 var query = require('./queries');
+var _ = require('underscore');
 
 /*************************************************************
 GET /api/us/cities
