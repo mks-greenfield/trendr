@@ -6,7 +6,7 @@ var async = require('async');
 var _ = require('underscore');
 
 /*************************************************************
-Globals
+Global Time Vars
 **************************************************************/
 
 var today = new Date();
@@ -15,6 +15,12 @@ var startofToday = new Date();
 startofToday.setHours(0);
 startofToday.setMinutes(0);
 startofToday.setSeconds(0);
+
+var sevenDaysAgo = new Date() 
+sevenDaysAgo.setDate(sevenDaysAgo.getDate()-7) 
+sevenDaysAgo.setHours(0)
+sevenDaysAgo.setMinutes(0)
+sevenDaysAgo.setSeconds(0)
 
 /*************************************************************
 Mongoose Queries
@@ -35,6 +41,15 @@ exports.distinctTrendsToday = function(cb) {
          .where({created_at: {$gt: startofToday, $lt: today}})
          .exec(cb);
 }
+
+exports.citiesTrendingThisWeek = function(trendName, cb) {
+  USTrend.distinct("location_name")
+         .where({trend_name : trendName, 
+                 created_at: {$gt: sevenDaysAgo, $lt: today}})
+         .exec(cb);
+}
+
+
 
 
 
