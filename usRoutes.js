@@ -10,6 +10,7 @@ GET /api/us/cities/<cityname>/weeklyvolume
 GET /api/us/cities/<cityname>/weeklytrends
 **************************************************************/
 
+//Returns all cities that have trend data.
 router.get('/cities', function(req, res) {
 
   USTrend.distinct("location_name", function(err, item) {
@@ -100,10 +101,29 @@ GET /api/us/trends/<trendname>/state
 GET /api/us/trends/<trendname>/volume
 **************************************************************/
 
-router.get('/trends', function(req, res) {
-  
-  res.status(200);
-  res.send("returns all distinct trends in the last 7 days");
+//returns all distinct trends in the last day
+router.get('/trends/day', function(req, res) {
+
+  var startDate = new Date()  // Current date
+  //startDate.setDate(startDate.getDate()-7) // Subtract 7 days
+  startDate.setHours(0)   // Set the hour, minute and second components to 0
+  startDate.setMinutes(0)
+  startDate.setSeconds(0)
+
+  USTrend.distinct("trend_name")
+         .where({created_at: {$gt: startDate, $lt: new Date(),}})
+         .exec(function(err, item) {
+            if (err) {
+              console.log("error", err);
+
+              res.status(500);
+              res.status("Internal Server Error. Cannot read from database at this time.")
+            } else {
+
+              res.status(200);
+              res.send(item);
+            }
+         });
 });
 
 router.get('/trends/:trendname/city', function(req, res) {
