@@ -25,6 +25,7 @@ router.get('/cities', function(req, res) {
   });
 });
 
+//Returns trends and tweet volume for that city for today ordered by tweet volume.
 router.get('/cities/:cityname/today', function(req, res) {
   var city = req.params.cityname;
 
@@ -85,12 +86,20 @@ router.get('/states/:statename/today', function(req, res) {
   res.send('returns trends and tweet volume for that state for today ordered by aggregate tweet volume.');
 });
 
-//TODO
+//Returns the top distinct trends and tweet volume for that state for the last 7 days 
+//ordered by aggregate tweet volume in its cities.
 router.get('/states/:statename/weeklyvolume', function(req, res) {
-  var state = req.params.statename;
+  var stateName = req.params.statename;
 
-  res.status(200);
-  res.send('returns the 10 top trends and tweet volume for that state for the last 7 days ordered by aggregate tweet volume in its cities.');
+  query.weeklyTweetVolumeRankByState(stateName,function(result) {
+    if (_.isEmpty(result)) {
+      res.status(404);
+      res.send("Currently no top trends for this state. Did you capitalize the state name?");
+    } else {
+      res.status(200);
+      res.send(result);
+    }
+  });
 });
 
 //TODO
