@@ -12,8 +12,18 @@ GET /api/us/cities/<cityname>/weeklytrends
 
 router.get('/cities', function(req, res) {
 
-  res.status(200);
-  res.send('returns all cities that have trend data.');
+  USTrend.distinct("location_name", function(err, item) {
+    if (err) {
+      console.log("error", err);
+
+      res.status(500);
+      res.send("Internal Server Error. Cannot read from database at this time");
+    } else {
+
+      res.status(200);
+      res.send(item);
+    }
+  });
 });
 
 router.get('/cities/:cityname/today', function(req, res) {
@@ -50,12 +60,12 @@ router.get('/states', function(req, res) {
   USTrend.distinct("state", function(err, item) {
     if (err) {
       console.log("error", err);
-      
+
       res.status(500);
       res.send("Internal Server Error. Cannot read from database at this time");
 
     } else {
-      // console.log("item", item);
+
       res.status(200);
       res.send(item);
     }
