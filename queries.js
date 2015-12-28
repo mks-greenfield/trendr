@@ -3,23 +3,7 @@ require('dotenv').load();
 var db = require('./mongodb/config');
 var USTrend = require('./mongodb/models/USTownTrend');
 var async = require('async');
-var _ = require('underscore');
-
-/*************************************************************
-Add Underscore Mixin to sort by keys
-**************************************************************/
-
-_.mixin({
-  'sortKeysBy': function (obj, comparator) {
-    var keys = _.sortBy(_.keys(obj), function (key) {
-      return comparator ? comparator(obj[key], key) : key;
-    });
-
-    return _.object(keys, _.map(keys, function (key) {
-      return obj[key];
-    }));
-  }
-});
+var utilities = require('./utilities/shared/shared');
 
 /*************************************************************
 Global Time Vars
@@ -48,22 +32,11 @@ startOfYesterday.setMinutes(0)
 startOfYesterday.setSeconds(0)
 
 /*************************************************************
-Mongoose Queries
+Citywide
 **************************************************************/
 
 exports.distinctCities = function(cb) {
   USTrend.distinct("location_name")
-         .exec(cb);
-}
-
-exports.distinctStates = function(cb) {
-  USTrend.distinct("state")
-         .exec(cb);
-}
-
-exports.distinctTrendsToday = function(cb) {
-  USTrend.distinct("trend_name")
-         .where({created_at: {$gt: startOfYesterday, $lt: yesterday}})
          .exec(cb);
 }
 
@@ -82,6 +55,25 @@ exports.citiesTrendingThisWeek = function(trendName, cb) {
          .exec(cb);
 }
 
+/*************************************************************
+Statewide
+**************************************************************/
+
+exports.distinctStates = function(cb) {
+  USTrend.distinct("state")
+         .exec(cb);
+}
+
+/*************************************************************
+By Trend
+**************************************************************/
+
+exports.distinctTrendsToday = function(cb) {
+  USTrend.distinct("trend_name")
+         .where({created_at: {$gt: startOfYesterday, $lt: yesterday}})
+         .exec(cb);
+}
+
 exports.statesTrendingThisWeek = function(trendName, cb) {
   USTrend.distinct("state")
          .where({trend_name : trendName, 
@@ -89,6 +81,9 @@ exports.statesTrendingThisWeek = function(trendName, cb) {
          .exec(cb);
 }
 
+/*************************************************************
+Countrywide
+**************************************************************/
 
 exports.usTrendsToday = function(cb) {
   var trend_data = {};
@@ -99,7 +94,6 @@ exports.usTrendsToday = function(cb) {
       console.log("error", err); 
 
     } else {
-       // console.log("trends", trends);
 
       async.each(trends, function(trend, next) {
 
@@ -109,8 +103,6 @@ exports.usTrendsToday = function(cb) {
             console.log("error", err); 
 
           } else {
-            // console.log("count", count);
-
             trend_data[trend] = count;
             next();
           }
@@ -122,22 +114,16 @@ exports.usTrendsToday = function(cb) {
 
         } else {
 
-          //sort by city count in descending order
-          var result =  _.sortKeysBy(trend_data, function (value, key) {
-            //changes from ascending to descending sort
-            return -(value);
-          });
+          //sort by keys (city count) in descending order
+          var result = utilities.sortKeysBy(trend_data);
 
-          cb(result);
-
-          // console.log("result", result);    
+          cb(result);   
         }
       });
     }
   });
 }
 
-// exports.usTrendsToday();
 
 
 

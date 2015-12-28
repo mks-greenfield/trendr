@@ -1,21 +1,6 @@
 var _ = require('underscore');
 var twitter = require('twitter');
-
-/*************************************************************
-Add Underscore Mixin to sort by keys
-**************************************************************/
-
-_.mixin({
-  'sortKeysBy': function (obj, comparator) {
-    var keys = _.sortBy(_.keys(obj), function (key) {
-      return comparator ? comparator(obj[key], key) : key;
-    });
-
-    return _.object(keys, _.map(keys, function (key) {
-      return obj[key];
-    }));
-  }
-});
+var utilities = require('./shared/shared');
 
 /*************************************************************
 Twitter Config
@@ -58,10 +43,7 @@ exports.returnTrendsByCountry = function(callback) {
         }
       });
 
-      return _.sortKeysBy(countries, function (value, key) {
-        //changes from ascending to descending sort
-        return -(value);
-      });
+      return utilities.sortKeysBy(countries);
     };
 
     countries = parseResponse(tweets);
