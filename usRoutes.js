@@ -71,13 +71,36 @@ router.get('/states/:statename/weeklytrends', function(req, res) {
 
 /*************************************************************
 GET /api/us/trends
-GET /api/us/trends?name=<trendname>&q=city
-GET /api/us/trends?name=<trendname>&q=state
-GET /api/us/trends?name=<trendname>&q=volume
+GET /api/us/trends/<trendname>/city
+GET /api/us/trends/<trendname>/state
+GET /api/us/trends/<trendname>/volume
 **************************************************************/
 
 router.get('/trends', function(req, res) {
-  res.send('testing this route');
+  
+  res.status(200);
+  res.send("returns all distinct trends in the last 7 days");
+});
+
+router.get('/trends/:trendname/city', function(req, res) {
+  var trend = req.params.trendname;
+
+  res.status(200);
+  res.send("returns which cities had the trend in the last 7 days.");
+});
+
+router.get('/trends/:trendname/state', function(req, res) {
+  var trend = req.params.trendname;
+  
+  res.status(200);
+  res.send("returns which states had the trend in the last 7 days.");
+});
+
+router.get('/trends/:trendname/volume', function(req, res) {
+  var trend = req.params.trendname;
+  
+  res.status(200);
+  res.send("returns tweet volume of the trend across all cities in the last 7 days.");
 });
 
 /*************************************************************
