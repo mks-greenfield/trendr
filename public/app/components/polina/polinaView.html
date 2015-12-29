@@ -1,1 +1,28 @@
-<div> {{ message }}</div>
+
+<div ng-controller="PolinaController">
+
+  <h3>Top Weekly Trends by State</h3>
+
+  <ui-select ng-model="state.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
+    <ui-select-match placeholder="Search available states">{{$select.selected.name}}</ui-select-match>
+
+    <ui-select-choices repeat="state in states | filter: {name: $select.search}">
+      <div ng-bind-html="state.name | highlight: $select.search"></div>
+
+      <small>
+        <span ng-bind-html="''| highlight: $select.search"></span>
+      </small>
+
+    </ui-select-choices>
+  </ui-select>
+
+  <p>Selected: {{state.selected}}</p>
+
+</div>
+
+
+
+
+
+
+ 

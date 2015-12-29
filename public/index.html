@@ -2,11 +2,19 @@
   <html ng-app='trendr'>
 
   <head>
+
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
     <script src="../bower_components/Chart.js/Chart.js"></script>
     <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="../bower_components/spin.js/spin.js"></script>
+
+    <!-- libraries Polina added for her component -->
+    <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="../bower_components/ui-select/dist/select.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
   </head>
 
   <body>
@@ -18,8 +26,7 @@
     <a href="#/polina">Polina</a>
     <a href="#/simon">Simon</a>
     <!-- add link to your route -->
-    
-    <div ng-view></div>
+
     <script src="app/components/chart/chartController.js"></script>
     <script src="app/components/home/homeController.js"></script>
 
@@ -32,6 +39,8 @@
 
     <script src="app/app.routes.js"></script>
     <script src="app/app.module.js"></script>
+
+    <div ng-view></div>
   </body>
 
   </html>
