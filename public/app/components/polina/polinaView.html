@@ -1,7 +1,8 @@
-
 <div ng-controller="PolinaController">
 
   <h3>Top Weekly Trends by State</h3>
+
+  <p>Selected: {{state.selected.name}}</p>
 
   <ui-select ng-model="state.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
     <ui-select-match placeholder="Search available states">{{$select.selected.name}}</ui-select-match>
@@ -16,9 +17,17 @@
     </ui-select-choices>
   </ui-select>
 
-  <p>Selected: {{state.selected}}</p>
+<table>
+  <th>Trend Name</th>  <th>Tweet Volume</th>
+  <tr ng-repeat="trend in trends">
+    <td> {{trend.name}} </td> <td> {{trend.tweet_volume}} </td>
+  </tr>
+</table>
 
 </div>
+
+
+
 
 
 
