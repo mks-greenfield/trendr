@@ -11,7 +11,8 @@ var LocationTrend = require('./mongodb/models/locationTrend.js');
 /*************************************************************
 Local Dependencies
 **************************************************************/
-var countryTrends = require('./utilities/countryTrends');
+var countryTrends = require('./utilities/twitterAPI/countryTrends');
+var usRoutes = require('./usRoutes');
 
 /*************************************************************
 Express Config
@@ -28,7 +29,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /*************************************************************
-Routes
+ROUTES FOR /api/us/*
+**************************************************************/
+app.use('/api/us', usRoutes);
+
+/*************************************************************
+TEST ROUTES
 **************************************************************/
 
 app.get('/api', function(req, res) {

@@ -19,8 +19,10 @@
   },
   "homepage": "https://mks-trendr.herokuapp.com/#/ ",
   "dependencies": {
+    "async": "1.5.0",
     "body-parser": "^1.14.2",
     "bower": "^1.7.1",
+    "dotenv": "1.2.0",
     "express": "^4.13.3",
     "foreman": "1.4.1",
     "fs": "0.0.2",
@@ -34,7 +36,8 @@
     "path": "^0.12.7",
     "request": "^2.67.0",
     "twitter": "^1.2.5",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "url": "0.11.0"
   },
   "engines": {
     "node": "5.0.0"
