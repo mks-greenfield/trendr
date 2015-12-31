@@ -82,12 +82,23 @@ angular.module('polina', ['ngSanitize','ui.select','nvd3'])
   $scope.state = {};
   $scope.states = [];
   $scope.trends = '';
+  $scope.selectedTrends = [];
 
   $scope.removeOne = function() {
     console.log("remove one");
     $scope.data.pop();
     // $scope.api.update();
+  };
 
+  $scope.addTrend = function(trend) {
+    console.log("adding", trend);
+    $scope.selectedTrends.push(trend);
+  };
+
+  $scope.removeTrend = function(trend) {
+    console.log("remove", trend);
+    var index = $scope.selectedTrends.indexOf(trend);
+    $scope.selectedTrends.splice(index, 1);
   };
 
   $scope.$watch('state.selected', function(value) {

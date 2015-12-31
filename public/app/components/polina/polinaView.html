@@ -1,35 +1,66 @@
+
 <div ng-controller="PolinaController">
 
-  <h3>Top Weekly Trends by State</h3>
+<!-- basic styling for 2 columns -->
+<style type="text/css">
+#wrap {
+   width:600px;
+   margin:0 auto;
+}
+#left_col {
+   float:left;
+   width:300px;
+}
+#right_col {
+   float:right;
+   width:300px;
+}
+</style>
 
-  <p>Selected: {{state.selected.name}}</p>
+<div id="wrap">
+    <div id="left_col">
+    <h3>Top Weekly Trends by State</h3>
 
-  <ui-select ng-model="state.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
-    <ui-select-match placeholder="Search available states">{{$select.selected.name}}</ui-select-match>
+    <p>Selected: {{state.selected.name}}</p>
 
-    <ui-select-choices repeat="state in states | filter: {name: $select.search}">
-      <div ng-bind-html="state.name | highlight: $select.search"></div>
+    <ui-select ng-model="state.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
+      <ui-select-match placeholder="Search available states">{{$select.selected.name}}</ui-select-match>
 
-      <small>
-        <span ng-bind-html="''| highlight: $select.search"></span>
-      </small>
+      <ui-select-choices repeat="state in states | filter: {name: $select.search}">
+        <div ng-bind-html="state.name | highlight: $select.search"></div>
 
-    </ui-select-choices>
-  </ui-select>
+        <small>
+          <span ng-bind-html="''| highlight: $select.search"></span>
+        </small>
 
-<table>
-  <th>Trend Name</th>  <th>Tweet Volume</th>
-  <tr ng-repeat="trend in trends">
-    <td> {{trend.name}} </td> <td> {{trend.tweet_volume}} </td>
-  </tr>
-</table>
+      </ui-select-choices>
+    </ui-select>
 
-<p> D3 </p>
+    <table>
+      <th>Selected Trends</th>
+      <tr ng-repeat="trend in selectedTrends">
+        <td> {{trend.name}} </td> 
+        <td> <button ng-click="removeTrend(trend)">remove</button> </td>
+      </tr>
+    </table>
+    </div>
+
+    <div id="right_col">
+      <table>
+        <th>Trend Name</th>  <th>Tweet Volume</th>
+        <tr ng-repeat="trend in trends">
+          <td> {{trend.name}} </td> 
+          <td> {{trend.tweet_volume}} </td>
+          <td> <button ng-click="addTrend(trend)">add</button> </td>
+        </tr>
+      </table>
+    </div>
+</div>
 
 <!--   <nvd3 options="options" data="data" api="api"></nvd3> -->
-  <nvd3 options="options" data="data" config="{deepWatchDataDepth: 1}"></nvd3>
+<!--   <nvd3 options="options" data="data" config="{deepWatchDataDepth: 1}"></nvd3>
 
-  <button ng-click="removeOne()">Remove one thing from the chart</button>
+  <button ng-click="removeOne()">Remove one thing from the chart</button> -->
 
 </div>
 
