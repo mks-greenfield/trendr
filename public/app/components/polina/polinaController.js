@@ -112,7 +112,7 @@ angular.module('polina', ['ngSanitize','ui.select','nvd3'])
 
     $http({
       method: 'GET',
-      url: '/api/us/states'
+      url: '/api/us/cities'
     }).then(function successCallback(response) {
         response.data.sort();
         angular.forEach(response.data, function(value) {
@@ -127,7 +127,7 @@ angular.module('polina', ['ngSanitize','ui.select','nvd3'])
 
     $http({
       method: 'GET',
-      url: '/api/us/states/'+stateName+'/weeklyvolume'
+      url: '/api/us/cities/'+stateName+'/dailyvolume'
     }).then(function successCallback(response) {
 
         var result = [];
