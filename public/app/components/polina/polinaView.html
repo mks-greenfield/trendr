@@ -49,7 +49,7 @@
       <table>
         <th>Trend Name</th>  <th>Tweet Volume</th>
         <tr ng-repeat="trend in trends">
-          <td> <a ng-href="#/{{trend.name}}" target="_blank"> {{trend.name}} </a> </td> 
+          <td> <a ng-href="http://twitter.com/search?q={{trend.name | escape}}" target="_blank"> {{trend.name}} </a> </td>
           <td> {{trend.tweet_volume}} </td>
           <td> <button ng-click="addTrend(trend)">add</button> </td>
         </tr>

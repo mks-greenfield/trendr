@@ -1,6 +1,10 @@
-angular.module('polina', ['ngSanitize','ui.select','nvd3'])
+var app = angular.module('polina', ['ngSanitize','ui.select','nvd3'])
 
-.controller('PolinaController', function($scope, $http) {
+app.filter('escape', function() {
+  return window.encodeURIComponent;
+});
+
+app.controller('PolinaController', function($scope, $http) {
 
   /* Chart options */
   $scope.options = {
@@ -105,6 +109,7 @@ angular.module('polina', ['ngSanitize','ui.select','nvd3'])
     if ($scope.state.selected) {
       console.log("watching", $scope.state.selected.name);
       $scope.getStatesWeeklyTrends($scope.state.selected.name);
+      $scope.selectedTrends = [];
     }
   });
 
