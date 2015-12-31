@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var query = require('./utilities/queries/usTrendQueries');
+var query = require('../queries/usTrendQueries');
 var _ = require('underscore');
 
 /*************************************************************
