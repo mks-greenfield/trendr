@@ -17,11 +17,11 @@ startofToday.setHours(0);
 startofToday.setMinutes(0);
 startofToday.setSeconds(0);
 
-var sevenDaysAgo = new Date() 
-sevenDaysAgo.setDate(sevenDaysAgo.getDate()-7) 
-sevenDaysAgo.setHours(0)
-sevenDaysAgo.setMinutes(0)
-sevenDaysAgo.setSeconds(0)
+var sevenDaysAgo = new Date(); 
+sevenDaysAgo.setDate(sevenDaysAgo.getDate()-7); 
+sevenDaysAgo.setHours(0);
+sevenDaysAgo.setMinutes(0);
+sevenDaysAgo.setSeconds(0);
 /*************************************************************
 Citywide
 **************************************************************/
@@ -30,7 +30,7 @@ Citywide
 exports.distinctCities = function(cb) {
   USTrend.distinct("location_name")
          .exec(cb);
-}
+};
 
 //Return all distinct trends for a city in the last 7 days
 exports.weeklyTrendsByCity = function(cityName, cb) {
@@ -38,7 +38,7 @@ exports.weeklyTrendsByCity = function(cityName, cb) {
          .where({location_name: cityName, 
                  created_at: {$gt: sevenDaysAgo, $lt: today}})
          .exec(cb);
-}
+};
 
 //Returns tweet volume for a trend in a city over the last 7 days
 exports.weeklyTweetVolumeByCityTrend = function(trendName, cityName, cb) {
@@ -47,7 +47,7 @@ exports.weeklyTweetVolumeByCityTrend = function(trendName, cityName, cb) {
          .select('trend_name tweet_volume created_at')
          //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
          .exec(cb);
-}
+};
 
 //Returns the distinct trends and tweet volume for that city for 
 //the last 7 days ordered by tweet volume.
@@ -81,7 +81,7 @@ exports.weeklyTweetVolumeRankByCity = function(cityName, cb) {
             city_trend_count[trend] = count;
             next();
           }
-        })
+        });
 
       }, function(err) {
         if (err) {
@@ -95,7 +95,7 @@ exports.weeklyTweetVolumeRankByCity = function(cityName, cb) {
       });
     }
   });
-}
+};
 
 /*************************************************************
 Statewide
@@ -105,7 +105,7 @@ Statewide
 exports.distinctStates = function(cb) {
   USTrend.distinct("state")
          .exec(cb);
-}
+};
 
 //Return all distinct trends for a state in the last 7 days
 exports.weeklyTrendsByState = function(stateName, cb) {
@@ -113,7 +113,7 @@ exports.weeklyTrendsByState = function(stateName, cb) {
          .where({state: stateName, 
                  created_at: {$gt: sevenDaysAgo, $lt: today}})
          .exec(cb);
-}
+};
 
 //Returns tweet volume for a trend in a state over the last 7 days
 exports.weeklyTweetVolumeByStateTrend = function(trendName, stateName, cb) {
@@ -122,7 +122,7 @@ exports.weeklyTweetVolumeByStateTrend = function(trendName, stateName, cb) {
          .select('location_name trend_name tweet_volume created_at')
          //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
          .exec(cb);
-}
+};
 
 //Returns the distinct trends and tweet volume for that state for 
 //the last 7 days ordered by aggregate tweet volume across its
@@ -159,7 +159,7 @@ exports.weeklyTweetVolumeRankByState = function(stateName, cb) {
             state_trend_count[trend] = count;
             next();
           }
-        })
+        });
 
       }, function(err) {
         if (err) {
@@ -173,7 +173,7 @@ exports.weeklyTweetVolumeRankByState = function(stateName, cb) {
       });
     }
   });
-}
+};
 /*************************************************************
 By Trend
 **************************************************************/
@@ -183,7 +183,7 @@ exports.distinctTrendsToday = function(cb) {
   USTrend.distinct("trend_name")
          .where({created_at: {$gt: startofToday, $lt: today}})
          .exec(cb);
-}
+};
 
 //Returns which states had the trend in the last 7 days.
 exports.statesTrendingThisWeek = function(trendName, cb) {
@@ -191,7 +191,7 @@ exports.statesTrendingThisWeek = function(trendName, cb) {
          .where({trend_name : trendName, 
                  created_at: {$gt: sevenDaysAgo, $lt: today}})
          .exec(cb);
-}
+};
 
 //Returns a count of cities having a trend yesterday.
 exports.cityCountTrendingToday = function(trendName, cb) {
@@ -200,7 +200,7 @@ exports.cityCountTrendingToday = function(trendName, cb) {
          .where({trend_name : trendName,
                  created_at: {$gt: startofToday, $lt: today}})
          .exec(cb);
-}
+};
 
 //Returns a list of cities having a trend this past week.
 exports.citiesTrendingThisWeek = function(trendName, cb) {
@@ -208,7 +208,7 @@ exports.citiesTrendingThisWeek = function(trendName, cb) {
          .where({trend_name : trendName, 
                  created_at: {$gt: sevenDaysAgo, $lt: today}})
          .exec(cb);
-}
+};
 
 /*************************************************************
 Countrywide
@@ -252,4 +252,4 @@ exports.usTrendsToday = function(cb) {
       });
     }
   });
-}
+};

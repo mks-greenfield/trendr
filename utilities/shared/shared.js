@@ -45,5 +45,5 @@ exports.sortKeysBy = function(obj) {
     return _.sortKeysBy(obj, function (value, key) {
             //changes from ascending to descending sort
             return -(value);
-          })
-}
+          });
+};
