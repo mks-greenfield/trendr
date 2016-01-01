@@ -31,22 +31,12 @@ app.controller('PolinaController', function($scope, $http) {
                      // return "hey";
                     return d;
                   }
-
               },
               yAxis: {
                   tickFormat: function(d){
                       return d3.format(',.2f')(d);
                   }
               }
-              // zoom: {
-              //     enabled: true,
-              //     scaleExtent: [1, 10],
-              //     useFixedDomain: false,
-              //     useNiceScale: false,
-              //     horizontalOff: false,
-              //     verticalOff: true,
-              //     unzoomEventType: 'dblclick.zoom'
-              // }
           }
       };
 

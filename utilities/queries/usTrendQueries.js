@@ -17,6 +17,15 @@ startofToday.setHours(0);
 startofToday.setMinutes(0);
 startofToday.setSeconds(0);
 
+var oneDayAgo = new Date();
+oneDayAgo.setDate(oneDayAgo.getDate()-1); 
+
+var oneDayAgoStart = new Date();
+oneDayAgoStart.setDate(oneDayAgoStart.getDate()-1); 
+oneDayAgoStart.setHours(0);
+oneDayAgoStart.setMinutes(0);
+oneDayAgoStart.setSeconds(0);
+
 var sevenDaysAgo = new Date(); 
 sevenDaysAgo.setDate(sevenDaysAgo.getDate()-7); 
 sevenDaysAgo.setHours(0);
@@ -25,6 +34,37 @@ sevenDaysAgo.setSeconds(0);
 /*************************************************************
 Citywide
 **************************************************************/
+
+//WORK IN PROGRESS-- NEED A FEW MORE QUERIES FOR MY FEATURE- Polina
+// for (var i = 0; i < 4; i++) {
+//   var day = new Date();
+//   day.setDate(day.getDate()-i); 
+
+//   var startOfDay = new Date();
+//   startOfDay.setDate(startOfDay.getDate()-i); 
+//   startOfDay.setHours(0);
+//   startOfDay.setMinutes(0);
+//   startOfDay.setSeconds(0);
+
+//   console.log(day, startOfDay);
+
+//   USTrend.find({location_name: "Austin", trend_name: "God Is Gangsta"})
+//          .where({created_at: {$gt: startOfDay, $lt: day}})
+//          .select('trend_name tweet_volume created_at')
+//          //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
+//          .exec(function(err, result) {
+//           console.log("result", result);
+//          });
+  
+// }
+
+  // USTrend.find({location_name: "Austin", trend_name: "Happy New Year"})
+  //      .where({created_at: {$gt: oneDayAgoStart, $lt: oneDayAgo}})
+  //      .select('trend_name tweet_volume created_at')
+  //      //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
+  //      .exec(function(err, result) {
+  //       console.log("result", result);
+  //      });
 
 // USTrend.find({location_name: "Long Beach"})
 //        .limit(1)
