@@ -1,5 +1,3 @@
-require('dotenv').load();
-
 var db = require('../../mongodb/config');
 var USTrend = require('../../mongodb/models/usTownTrend');
 var utilities = require('../shared/shared');
