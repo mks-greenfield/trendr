@@ -28,7 +28,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="fa fa-twitter fa-fw"></i> Top Trends for {{state.selected.name}}
+            <i class="fa fa-twitter fa-fw"></i> Current Top Trends for {{state.selected.name}}
         </div>
 
         <div class="panel-body">
@@ -38,6 +38,9 @@
                   <div class="list-group-item" ng-repeat="trend in trends">
 
                       <a ng-href="http://twitter.com/search?q={{trend.name | escape}}" target="_blank"> {{trend.name}} </a>
+
+                      {{trend.tweet_volume}} tweets
+
                       <span class="pull-right text-muted small">
 
                         <button type="button" class="btn btn-info btn-xs" ng-click="addTrend(trend)">add</button>
