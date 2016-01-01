@@ -12,7 +12,7 @@ var LocationTrend = require('./mongodb/models/locationTrend.js');
 Local Dependencies
 **************************************************************/
 var countryTrends = require('./utilities/twitterAPI/countryTrends');
-var usRoutes = require('./usRoutes');
+var usRoutes = require('./utilities/middleware/usRoutes');
 
 /*************************************************************
 Express Config

@@ -2,28 +2,41 @@
   <html ng-app='trendr'>
 
   <head>
+    <meta charset="utf-8">  <!-- it's important for d3.js -->
 
+    <!-- Angular -->
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
+
+    <!-- Chart.js -->
     <script src="../bower_components/Chart.js/Chart.js"></script>
     <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="../bower_components/spin.js/spin.js"></script>
 
-    <!-- libraries Polina added specific to her component -->
+    <!-- D3 -->
+    <script src="../bower_components/d3/d3.js"></script>
+    <script src="../bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="../bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <link rel="stylesheet" href="../bower_components/nvd3/build/nv.d3.css">
+
+    <!-- libraries specific to Polina's drop down/search bar -->
     <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="../bower_components/ui-select/dist/select.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
 
+    <!-- Bootstrap -->
     <script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-
     <link rel="stylesheet" src="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <!-- Bootstrap CDN to test versions of bootstrap for debugging-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- font awesome -->
+     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     
   </head>
 
   <body>
