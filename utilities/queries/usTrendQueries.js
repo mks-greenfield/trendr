@@ -1,7 +1,7 @@
 require('dotenv').load();
 
 var db = require('../../mongodb/config');
-var USTrend = require('../../mongodb/models/USTownTrend');
+var USTrend = require('../../mongodb/models/usTownTrend');
 var utilities = require('../shared/shared');
 var _ = require('underscore');
 var async = require('async');
