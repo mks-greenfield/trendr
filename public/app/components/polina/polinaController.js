@@ -66,6 +66,7 @@ app.controller('PolinaController', function($scope, $http) {
   $scope.trends = '';
   $scope.selectedTrends = [];
 
+  $scope.selectedTrendsBoolean = false;
 
   var opts = {
     lines: 13, // The number of lines to draw
@@ -100,6 +101,7 @@ app.controller('PolinaController', function($scope, $http) {
 
   $scope.addTrend = function(trend) {
     console.log("adding", trend);
+
     if ($scope.selectedTrends.indexOf(trend) === -1) {
       $scope.selectedTrends.push(trend);
       var obj = {
