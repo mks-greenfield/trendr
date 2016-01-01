@@ -1,7 +1,9 @@
 Trendr
 --------
 
-Testing Heroku's automated deployment at https://mks-trendr.herokuapp.com/#/.
+Heroku: https://mks-trendr.herokuapp.com/#/.
+
+Starting the server: `npm start`
 
 Adding additional views:
 - Make new folder in /public with controller.js file and html view
