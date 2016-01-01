@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 
 var uri  = (process.env.MONGOLAB_URI || 'mongodb://localhost/test');
 
+console.log("uri",uri);
+
 mongoose.connect(uri);
 
 var db = mongoose.connection;
