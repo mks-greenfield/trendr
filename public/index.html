@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
 
+    <!-- jQuery mobile flat theme -->
+    <link rel="stylesheet" src="./assets/css/jquery.mobile.flatui.css">
+    <link rel="stylesheet" src="./assets/css/styles_jQuery.css">
+    <script src="js/jquery.js"></script>
+
+
     <!-- Bootstrap -->
     <script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -40,13 +46,25 @@
   </head>
 
   <body>
-    <a href="#/">Home</a>
-    <a href="#/chart">Chart</a>
-    <a href="#/kevin">Kevin</a>
-    <a href="#/geetha">Geetha</a>
-    <a href="#/brandon">Brandon</a>
-    <a href="#/polina">Polina</a>
-    <a href="#/simon">Simon</a>
+
+    <nav class="navbar navbar-inverse static">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">TRENDR</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#/">Home</a></li>
+                <li><a href="#/chart">Chart</a></li>
+                <li><a href="#/kevin">Kevin</a></li>
+                <li><a href="#/geetha">Geetha</a></li>
+                <li><a href="#/brandon">Brandon</a></li>
+                <li><a href="#/polina">Polina</a></li>
+                <li><a href="#/simon">Simon</a></li>
+            </ul>
+        </div>
+        
+    </nav>
+
     <!-- add link to your route -->
 
     <script src="app/components/chart/chartController.js"></script>
