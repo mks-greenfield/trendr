@@ -108,11 +108,13 @@ app.get('/test', function(req, res) {
 
   paramArray = [{
         id: 2487956
-      },
-      // {id: 2487889},
-      // {id: 2379574},
-      // {id: 2450022},
-      {
+      }, {
+        id: 2487889
+      }, {
+        id: 2379574
+      }, {
+        id: 2450022
+      }, {
         id: 2459115
       }, {
         id: 2514815
@@ -120,9 +122,9 @@ app.get('/test', function(req, res) {
         id: 2490383
       }, {
         id: 2436704
-      },
-      // {id: 2475687},
-      {
+      }, {
+        id: 2475687
+      }, {
         id: 2391279
       }, {
         id: 2486340
@@ -149,7 +151,8 @@ app.get('/test', function(req, res) {
           new LocationTrend({
               location: apiArr[0].locations[0].name,
               trend_name: apiArr[0].trends[i].name,
-              tweet_volume: apiArr[0].trends[i].tweet_volume
+              tweet_volume: apiArr[0].trends[i].tweet_volume,
+              created_at: apiArr[0].created_at
             })
             .save(function(err) {
               if (err) {
