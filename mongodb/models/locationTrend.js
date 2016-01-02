@@ -8,7 +8,8 @@ Tentative Schema based on GET trends/places
 var locationTrendSchema = new mongoose.Schema({
   location : {type: String}, // Worldwide
   trend_name : {type: String}, //#SandraBland
-  tweet_volume : {type: Number} //22355
+  tweet_volume : {type: Number}, //22355
+  created_at : {type: String} // type: Date?
 });
 
 var LocationTrend = mongoose.model("LocationTrend", locationTrendSchema);

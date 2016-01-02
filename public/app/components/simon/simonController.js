@@ -2,11 +2,6 @@ angular.module('simon', [])
 
 .controller('SimonController', function($scope, $http) {
 
-  var dataArr = [];
-  var title;
-  var subtitle;
-  var footer;
-
   var rawData;
 
   $scope.getLocationTrends = function() {
@@ -47,7 +42,8 @@ angular.module('simon', [])
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
-  $scope.getSanFrancisco = function() {    
+  $scope.getSanFrancisco = function() {
+    var dataArr = [];
     for (var i = 0; i < rawData.length; i++) {
       if (rawData[i].location === 'San Francisco') {
         dataArr.push({
@@ -57,19 +53,16 @@ angular.module('simon', [])
         });
       }
     }
-    title = 'San Francisco'
-    subtitle;
-    footer;
 
     var pie = new d3pie("pieChart", {
       "header": {
         "title": {
-          "text": title,
+          "text": "San Francisco",
           "fontSize": 34,
           "font": "courier"
         },
         "subtitle": {
-          "text": subtitle,
+          "text": "subtitle",
           "color": "#999999",
           "fontSize": 10,
           "font": "courier"
@@ -78,7 +71,7 @@ angular.module('simon', [])
         "titleSubtitlePadding": 10
       },
       "footer": {
-        "text": footer,
+        "text": "footer",
         "color": "#999999",
         "fontSize": 10,
         "font": "open sans",
@@ -137,6 +130,7 @@ angular.module('simon', [])
   }
 
   $scope.getChicago = function() {
+    var dataArr = [];
     for (var i = 0; i < rawData.length; i++) {
       if (rawData[i].location === 'Chicago') {
         dataArr.push({
@@ -146,19 +140,16 @@ angular.module('simon', [])
         });
       }
     }
-    title = 'Chicago'
-    subtitle;
-    footer;
 
     var pie = new d3pie("pieChart", {
       "header": {
         "title": {
-          "text": title,
+          "text": "Chicago",
           "fontSize": 34,
           "font": "courier"
         },
         "subtitle": {
-          "text": subtitle,
+          "text": "subtitle",
           "color": "#999999",
           "fontSize": 10,
           "font": "courier"
@@ -167,7 +158,7 @@ angular.module('simon', [])
         "titleSubtitlePadding": 10
       },
       "footer": {
-        "text": footer,
+        "text": "footer",
         "color": "#999999",
         "fontSize": 10,
         "font": "open sans",
