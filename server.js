@@ -41,12 +41,19 @@ app.use('/api/us', usRoutes);
 TEST ROUTES
 **************************************************************/
 
-app.get('/api', function(req, res) {
-
+app.get('/populateDatabaseWithCountryTrends', function(req, res) {
   countryTrends.returnTrendsByCountry(function(results) {
     console.log("results", results);
     res.status(200);
     res.send(results);
+  });
+});
+
+app.get('/populateDatabaseWithCityTrends', function(req, res) {
+  cityTrends.returnTrendsByCity(function(results) {
+  console.log("results", results);
+  res.status(200);
+  res.send(results);
   });
 });
 
@@ -61,8 +68,6 @@ app.get('/db', function(req, res) {
   });
 });
 
-
-
 app.get('/locationTrends', function(req, res) {
   LocationTrend.find(function(err, trends) {
     if (err) {
@@ -73,12 +78,6 @@ app.get('/locationTrends', function(req, res) {
     res.send(trends);
   });
 });
-
-app.get('/populateDatabaseWithCityTrends', function(req, res) {
-  cityTrends.returnTrendsByCity();
-});
-
-
 
 
 /*************************************************************
