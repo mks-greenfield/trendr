@@ -1,4 +1,4 @@
-var app = angular.module('polina', ['ngSanitize','ui.select','nvd3'])
+var app = angular.module('polina', ['ngSanitize','ui.select','nvd3']);
 
 app.filter('escape', function() {
   return window.encodeURIComponent;
@@ -59,7 +59,7 @@ app.controller('PolinaController', function($scope, $http) {
             //                   ]
             // }
 
-        ]
+        ];
 
   $scope.state = {};
   $scope.states = [];
@@ -111,7 +111,7 @@ app.controller('PolinaController', function($scope, $http) {
                               [ 3 , 21.02286281168],
                               [4, 20]
                               ]
-            }
+            };
        $scope.data.push(obj);
     }    
   };

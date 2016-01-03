@@ -109,7 +109,7 @@ router.get('/trends/day', function(req, res) {
       console.log("error", err);
 
       res.status(500);
-      res.send("Internal Server Error. Cannot read from database at this time.")
+      res.send("Internal Server Error. Cannot read from database at this time.");
     } else {
 
       res.status(200);
