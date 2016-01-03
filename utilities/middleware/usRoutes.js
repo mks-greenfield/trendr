@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var query = require('../queries/usTrendQueries');
 var _ = require('underscore');
+var interpolateLineRange = require('line-interpolate-points');
 
 /*************************************************************
 GET /api/us/cities
@@ -25,11 +26,11 @@ router.get('/cities', function(req, res) {
   });
 });
 
-//Returns the distinct trends and tweet volume for that city for today ordered by tweet volume.
+//Returns the distinct trends and tweet volume for that city in the last 24 hours ordered by tweet volume.
 router.get('/cities/:cityname/dailyvolume', function(req, res) {
   var cityName = req.params.cityname;
 
-  query.dailyTweetVolumeRankByCity(cityName,function(result) {
+  query.currentTweetVolumeRankByCity(cityName,function(result) {
     if (_.isEmpty(result)) {
       res.status(404);
       res.send("Currently no top trends for this city. Did you capitalize the city name?");
@@ -38,6 +39,44 @@ router.get('/cities/:cityname/dailyvolume', function(req, res) {
       res.send(result);
     }
   });
+});
+
+//Returns all tweet volume for a trend in a city over the last 24 hours
+router.get('/cities/:cityname/:trendname', function(req, res) {
+  var cityName = req.params.cityname;
+  var trendName = req.params.trendname;
+
+  query.dailyTweetVolumeByCityTrend(trendName, cityName,function(err, result) {
+    if (_.isEmpty(result)) {
+      res.status(404);
+      res.send("Currently no top trends for this city. Did you capitalize the city name?");
+    } else {
+      res.status(200);
+      // console.log("HEY", result);
+
+      var lineRange = [];
+
+      for (var i = 0; i < result.length; i++) {
+        lineRange.push([1,result[i].tweet_volume]);
+      }
+
+      //HANDLE CASE WHERE ONLY 1 DATA POINT GETS BACK
+      if (lineRange.length === 1) {
+        lineRange.unshift([1,0]);
+      }
+
+      var data = interpolateLineRange(lineRange, 24);
+
+      for (var i = 0; i < data.length; i++) {
+        data[i][0] = i+1;
+      }
+      
+      var obj = { key : trendName , values: data};
+
+      res.send(obj);
+    }
+  });
+
 });
 
 /*************************************************************

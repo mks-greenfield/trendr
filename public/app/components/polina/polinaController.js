@@ -40,26 +40,7 @@ app.controller('PolinaController', function($scope, $http) {
           }
       };
 
-    $scope.data = [
-
-            // {
-            //     "key" : "" ,
-            //     "values" : [ [ 1 , 0] , 
-            //                   [ 2 , 0] , 
-            //                   [ 3 , 0],
-            //                   [4, 0]
-            //                   ]
-            // }
-            // {
-            //     "key" : "South America" ,
-            //     "values" : [ [ 1 , 23.041422681023] , 
-            //                   [ 2 , 19.854291255832] , 
-            //                   [ 3 , 21.02286281168],
-            //                   [4, 20]
-            //                   ]
-            // }
-
-        ]
+  $scope.data = [];
 
   $scope.state = {};
   $scope.states = [];
@@ -93,35 +74,18 @@ app.controller('PolinaController', function($scope, $http) {
   var target = document.getElementById('spinner');
   var spinner = new Spinner(opts);
 
-  $scope.removeOne = function() {
-    console.log("remove one");
-    $scope.data.pop();
-    // $scope.api.update();
-  };
-
-  $scope.addTrend = function(trend) {
-    console.log("adding", trend);
-
-    if ($scope.selectedTrends.indexOf(trend) === -1) {
-      $scope.selectedTrends.push(trend);
-      var obj = {
-                "key" : trend.name ,
-                "values" : [ [ 1 , 23.041422681023] , 
-                              [ 2 , 19.854291255832] , 
-                              [ 3 , 21.02286281168],
-                              [4, 20]
-                              ]
-            }
-       $scope.data.push(obj);
-    }    
-  };
-
   $scope.removeTrend = function(trend) {
-    console.log("remove", trend);
+    //console.log("remove", trend);
     var index = $scope.selectedTrends.indexOf(trend);
 
     $scope.selectedTrends.splice(index, 1);
-    $scope.data.pop();
+
+    for (var i = 0; i < $scope.data.length; i++) {
+      if ($scope.data[i].key === trend.name) {
+        //console.log($scope.data[i]);
+        $scope.data.splice(i, 1);
+      }
+    }
   };
 
   $scope.$watch('state.selected', function(value) {
@@ -132,6 +96,29 @@ app.controller('PolinaController', function($scope, $http) {
       $scope.data = [];
     }
   });
+
+  $scope.addTrendDataToChart = function(trend, cityName) {
+
+    if ($scope.selectedTrends.indexOf(trend) === -1) {
+      // console.log("adding", trend);
+      $scope.selectedTrends.push(trend);
+      var encoded = encodeURIComponent(trend.name);
+
+      var url = '/api/us/cities/' + cityName + '/' + encoded;
+      // console.log("url", url);
+
+      $http({
+        method: 'GET',
+        url: url,
+        }).then(function successCallback(response) {
+          // console.log("data", response.data);
+          var obj = response.data;
+          $scope.data.push(obj);
+        }, function errorCallback(response) {
+          // console.log("error", response);
+        });
+    }   
+  };
 
   $scope.getStates = function() {
 
