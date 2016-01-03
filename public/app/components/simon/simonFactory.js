@@ -6,7 +6,7 @@ angular.module('simonFactory', [])
 
   var randomColorGenerator = function() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
-  }
+  };
 
   var getLocationTrends = function() {
     var successCallback = function(response) {
@@ -159,7 +159,7 @@ angular.module('simonFactory', [])
   var getPhoenix = function() {
     makePie('Phoenix', 'Phoenix');
   };
-  
+
   var obj = {
     getSanFrancisco: getSanFrancisco,
     getChicago: getChicago,
@@ -174,7 +174,7 @@ angular.module('simonFactory', [])
     getLosAngeles: getLosAngeles,
     getSacramento: getSacramento,
     getPhoenix: getPhoenix
-  }
+  };
 
   return obj;
 });

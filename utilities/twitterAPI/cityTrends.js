@@ -67,7 +67,7 @@ Endpoint returns the trending hashtags for a specified WOEID within a 24 hour ti
       }, {
         id: 2471390
       }
-    ]
+    ];
 
 
 exports.returnTrendByCity = function(callback) {
