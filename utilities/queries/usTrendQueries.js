@@ -10,8 +10,8 @@ Global Time Vars
 **************************************************************/
 
 var today = moment().format();
-var twentyfourhoursago = moment().subtract('1','days').format();
-var threehoursago = moment().subtract('3','hours').format();
+var twentyFourHoursAgo = moment().subtract('1','days').format();
+var threeHoursAgo = moment().subtract('3','hours').format();
 
 /*************************************************************
 Citywide
@@ -27,14 +27,14 @@ exports.distinctCities = function(cb) {
 exports.currentTrendsByCity = function(cityName, cb) {
   USTrend.distinct("trend_name")
          .where({location_name: cityName, 
-                 created_at: {$gt: threehoursago, $lt: today}})
+                 created_at: {$gt: threeHoursAgo, $lt: today}})
          .exec(cb);
 };
 
 //Returns all tweet volume for a trend in a city over the last 3 hours
 exports.currentTweetVolumeByCityTrend = function(trendName, cityName, cb) {
   USTrend.find({location_name: cityName, trend_name: trendName})
-         .where({created_at: {$gt: threehoursago, $lt: today}})
+         .where({created_at: {$gt: threeHoursAgo, $lt: today}})
          .select('trend_name tweet_volume created_at')
          .exec(cb);
 };
@@ -42,9 +42,8 @@ exports.currentTweetVolumeByCityTrend = function(trendName, cityName, cb) {
 //Returns all tweet volume for a trend in a city over the last 24 hours
 exports.dailyTweetVolumeByCityTrend = function(trendName, cityName, cb) {
   USTrend.find({location_name: cityName, trend_name: trendName})
-         .where({created_at: {$gt: twentyfourhoursago, $lt: today}})
+         .where({created_at: {$gt: twentyFourHoursAgo, $lt: today}})
          .select('trend_name tweet_volume created_at')
-         //.limit(2) //there seems to be only 1 thing so far for each trend, wierd
          .exec(cb);
 };
 
@@ -107,7 +106,7 @@ By Trend
 //returns all distinct trends in the last day
 exports.distinctTrendsToday = function(cb) {
   USTrend.distinct("trend_name")
-         .where({created_at: {$gt: twentyfourhoursago, $lt: today}})
+         .where({created_at: {$gt: twentyFourHoursAgo, $lt: today}})
          .exec(cb);
 };
 
@@ -116,7 +115,7 @@ exports.cityCountTrendingToday = function(trendName, cb) {
   USTrend.distinct("location_name")
          .count()
          .where({trend_name : trendName,
-                 created_at: {$gt: twentyfourhoursago, $lt: today}})
+                 created_at: {$gt: twentyFourHoursAgo, $lt: today}})
          .exec(cb);
 };
 
