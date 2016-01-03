@@ -5,7 +5,7 @@ var trendr = angular.module('trendr', [
   'chart',
   'brandon',
   'geetha',
-  'polina',
+  'stackedAreaChart',
   'kevin',
   'simon'
   // add additional module names here

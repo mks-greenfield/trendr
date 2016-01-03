@@ -1,10 +1,10 @@
-var app = angular.module('polina', ['ngSanitize','ui.select','nvd3'])
+var app = angular.module('stackedAreaChart', ['ngSanitize','ui.select','nvd3'])
 
 app.filter('escape', function() {
   return window.encodeURIComponent;
 });
 
-app.controller('PolinaController', function($scope, $http) {
+app.controller('stackedAreaChartController', function($scope, $http) {
 
   /* Chart options */
   $scope.options = {
@@ -106,7 +106,8 @@ app.controller('PolinaController', function($scope, $http) {
       // console.log("adding", trend);
       $scope.selectedTrends.push(trend);
       var encoded = encodeURIComponent(trend.name);
-
+      console.log("cityname", cityName);
+      
       var url = '/api/us/cities/' + cityName + '/' + encoded;
       // console.log("url", url);
 

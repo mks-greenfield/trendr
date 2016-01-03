@@ -23,16 +23,15 @@ angular.module('routes', [])
     templateUrl: './app/components/kevin/kevinView.html',
     controller: 'KevinController'
   })
-  .when('/polina', {
-    templateUrl: './app/components/polina/polinaView.html',
-    controller: 'PolinaController'
+  .when('/stackedAreaChart', {
+    templateUrl: './app/components/stackedAreaChart/stackedAreaChartView.html',
+    controller: 'stackedAreaChartController'
   })
   .when('/simon', {
     templateUrl: './app/components/simon/simonView.html',
     controller: 'SimonController'
   })
   // add additional routes here
-
   .otherwise({
     redirectTo: '/'
   });
