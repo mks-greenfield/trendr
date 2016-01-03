@@ -31,6 +31,10 @@ angular.module('routes', [])
     templateUrl: './app/components/simon/simonView.html',
     controller: 'SimonController'
   })
+  .when('/usDataMap', {
+    templateUrl: './app/components/usDataMap/usDataMapView.html',
+    controller: 'usDataMapController'
+  })
   // add additional routes here
   .otherwise({
     redirectTo: '/'
