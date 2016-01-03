@@ -61,6 +61,9 @@ router.get('/cities/:cityname/:trendname', function(req, res) {
       }
 
       //HANDLE CASE WHERE ONLY 1 DATA POINT GETS BACK
+      if (lineRange.length === 1) {
+        lineRange.unshift([1,0]);
+      }
 
       var data = interpolateLineRange(lineRange, 24);
 
