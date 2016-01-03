@@ -1,9 +1,6 @@
-// require('dotenv').load(); //loads .env vars
 var mongoose = require('mongoose');
 
 var uri  = (process.env.MONGOLAB_URI || 'mongodb://localhost/test');
-
-console.log("uri",uri);
 
 mongoose.connect(uri);
 
