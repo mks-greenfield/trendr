@@ -24,6 +24,7 @@
     "bootstrap": "~3.3.6",
     "angular-nvd3": "~1.0.5",
     "font-awesome": "~4.5.0",
-    "sb-admin-2": "*"
+    "sb-admin-2": "*",
+    "angular-datamaps": "~0.1.2"
   }
 }
