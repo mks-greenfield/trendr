@@ -1,4 +1,4 @@
-var app = angular.module('polina', ['ngSanitize', 'ui.select', 'nvd3']);
+var app = angular.module('polina', ['ngSanitize','ui.select','nvd3']);
 
 app.filter('escape', function() {
   return window.encodeURIComponent;
