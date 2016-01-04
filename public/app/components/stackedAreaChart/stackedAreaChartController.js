@@ -1,10 +1,10 @@
-var app = angular.module('polina', ['ngSanitize','ui.select','nvd3']);
+var app = angular.module('stackedAreaChart', ['ngSanitize','ui.select','nvd3'])
 
 app.filter('escape', function() {
   return window.encodeURIComponent;
 });
 
-app.controller('PolinaController', function($scope, $http) {
+app.controller('stackedAreaChartController', function($scope, $http) {
 
   /* Chart options */
   $scope.options = {
@@ -46,12 +46,10 @@ app.controller('PolinaController', function($scope, $http) {
 
   $scope.data = [];
 
-  $scope.state = {};
-  $scope.states = [];
-  $scope.trends = '';
+  $scope.city = {};
+  $scope.cities = [];
+  $scope.trends = [];
   $scope.selectedTrends = [];
-
-  $scope.selectedTrendsBoolean = false;
 
   var opts = {
     lines: 13, // The number of lines to draw
@@ -116,12 +114,14 @@ app.controller('PolinaController', function($scope, $http) {
     }
   };
 
-  $scope.$watch('state.selected', function(value) {
-    if ($scope.state.selected) {
-      console.log("watching", $scope.state.selected.name);
-      $scope.getStatesWeeklyTrends($scope.state.selected.name);
-      $scope.selectedTrends = [];
+  $scope.$watch('city.selected', function(value) {
+
+    if ($scope.city.selected) {
+      $scope.getCitiesDailyTrends($scope.city.selected.name);
+      //reset chart data, current trend list, and selected trends
       $scope.data = [];
+      $scope.trends = [];
+      $scope.selectedTrends = [];
     }
   });
 
@@ -131,7 +131,8 @@ app.controller('PolinaController', function($scope, $http) {
       // console.log("adding", trend);
       $scope.selectedTrends.push(trend);
       var encoded = encodeURIComponent(trend.name);
-
+      console.log("cityname", cityName);
+      
       var url = '/api/us/cities/' + cityName + '/' + encoded;
       // console.log("url", url);
 
@@ -148,7 +149,7 @@ app.controller('PolinaController', function($scope, $http) {
     }
   };
 
-  $scope.getStates = function() {
+  $scope.getCities = function() {
 
     $http({
       method: 'GET',
@@ -165,7 +166,7 @@ app.controller('PolinaController', function($scope, $http) {
     });
   };
 
-  $scope.getStatesWeeklyTrends = function(stateName) {
+  $scope.getCitiesDailyTrends = function(stateName) {
     spinner.spin(target);
 
     $http({
@@ -192,5 +193,6 @@ app.controller('PolinaController', function($scope, $http) {
     });
   };
 
-  $scope.getStates();
+
+  $scope.getCities();
 });

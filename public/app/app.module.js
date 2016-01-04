@@ -5,8 +5,9 @@ var trendr = angular.module('trendr', [
   'chart',
   'brandon',
   'geetha',
-  'polina',
+  'stackedAreaChart',
   'kevin',
-  'simon'
+  'simon',
+  'usDataMap'
   // add additional module names here
 ]);
