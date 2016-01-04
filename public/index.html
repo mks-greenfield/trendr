@@ -2,9 +2,11 @@
   <html ng-app='trendr'>
 
   <head>
-    <meta charset="utf-8">  <!-- it's important for d3.js -->
 
+    <meta charset="utf-8">  <!-- it's important for d3.js -->
+    
     <!-- Angular -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
 
@@ -18,12 +20,19 @@
     <script src="../bower_components/nvd3/build/nv.d3.js"></script>
     <script src="../bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
     <link rel="stylesheet" href="../bower_components/nvd3/build/nv.d3.css">
+    <script src="../bower_components/topojson/topojson.js"></script>
+    <script src="../bower_components/datamaps/dist/datamaps.all.js"></script>
+    <script src="../bower_components/angular-datamaps/dist/angular-datamaps.js"></script>
 
     <!-- libraries specific to Polina's drop down/search bar -->
     <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="../bower_components/ui-select/dist/select.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+    <!-- jQuery mobile flat theme -->
+    <link rel="stylesheet" src="./assets/css/jquery.mobile.flatui.css">
+    <link rel="stylesheet" src="./assets/css/styles_jQuery.css">
 
     <!-- Bootstrap -->
     <script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
@@ -34,19 +43,43 @@
     <!-- Bootstrap CDN to test versions of bootstrap for debugging-->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <!-- font awesome -->
-     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
      
+    <script src="../bower_components/d3/d3.min.js"></script>
+    <script src="../bower_components/d3pie/d3pie/d3pie.min.js"></script>
+    
+    <!-- font awesome -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font-size: 25px;
+            color: #fff;
+        }
+    </style> 
   </head>
 
   <body>
-    <a href="#/">Home</a>
-    <a href="#/chart">Chart</a>
-    <a href="#/kevin">Kevin</a>
-    <a href="#/geetha">Geetha</a>
-    <a href="#/brandon">Brandon</a>
-    <a href="#/polina">Polina</a>
-    <a href="#/simon">Simon</a>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/"><i class="fa fa-twitter"></i> trendr</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#/chart">Chart</a></li>
+                <li><a href="#/kevin">Kevin</a></li>
+                <li><a href="#/geetha">Geetha</a></li>
+                <li><a href="#/brandon">Brandon</a></li>
+                <li><a href="#/stackedAreaChart">City Trends Over Time</a></li>
+                <li><a href="#/simon">Simon</a></li>
+                <li><a href="#/usDataMap">State Trends</a></li>
+            </ul>
+        </div>
+        
+    </nav>
+
     <!-- add link to your route -->
 
     <script src="app/components/chart/chartController.js"></script>
@@ -55,14 +88,18 @@
     <script src="app/components/brandon/brandonController.js"></script>
     <script src="app/components/geetha/geethaController.js"></script>
     <script src="app/components/kevin/kevinController.js"></script>
-    <script src="app/components/polina/polinaController.js"></script>
+    <script src="app/components/stackedAreaChart/stackedAreaChartController.js"></script>
+    <script src="app/components/usDataMap/usDataMapController.js"></script>
     <script src="app/components/simon/simonController.js"></script>
+    <script src="app/components/simon/simonFactory.js"></script>
     <!-- add additional controller scripts here -->
 
     <script src="app/app.routes.js"></script>
     <script src="app/app.module.js"></script>
 
-    <div ng-view></div>
+    <div class="container">
+        <div ng-view></div>
+    </div>
   </body>
 
   </html>

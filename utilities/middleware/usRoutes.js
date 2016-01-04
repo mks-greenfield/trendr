@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var query = require('../queries/usTrendQueries');
 var _ = require('underscore');
+var interpolateLineRange = require('line-interpolate-points');
+var stateUtils = require('../shared/stateAbbreviations');
 
 /*************************************************************
 GET /api/us/cities
@@ -25,11 +27,11 @@ router.get('/cities', function(req, res) {
   });
 });
 
-//Returns the distinct trends and tweet volume for that city for today ordered by tweet volume.
+//Returns the distinct trends and tweet volume for that city in the last 24 hours ordered by tweet volume.
 router.get('/cities/:cityname/dailyvolume', function(req, res) {
   var cityName = req.params.cityname;
 
-  query.dailyTweetVolumeRankByCity(cityName,function(result) {
+  query.currentTweetVolumeRankByCity(cityName,function(result) {
     if (_.isEmpty(result)) {
       res.status(404);
       res.send("Currently no top trends for this city. Did you capitalize the city name?");
@@ -38,6 +40,44 @@ router.get('/cities/:cityname/dailyvolume', function(req, res) {
       res.send(result);
     }
   });
+});
+
+//Returns all tweet volume for a trend in a city over the last 24 hours
+router.get('/cities/:cityname/:trendname', function(req, res) {
+  var cityName = req.params.cityname;
+  var trendName = req.params.trendname;
+
+  query.dailyTweetVolumeByCityTrend(trendName, cityName,function(err, result) {
+    if (_.isEmpty(result)) {
+      res.status(404);
+      res.send("Currently no top trends for this city. Did you capitalize the city name?");
+    } else {
+      res.status(200);
+      // console.log("HEY", result);
+
+      var lineRange = [];
+
+      for (var i = 0; i < result.length; i++) {
+        lineRange.push([1,result[i].tweet_volume]);
+      }
+
+      //HANDLE CASE WHERE ONLY 1 DATA POINT GETS BACK
+      if (lineRange.length === 1) {
+        lineRange.unshift([1,0]);
+      }
+
+      var data = interpolateLineRange(lineRange, 24);
+
+      for (var j = 0; j < data.length; j++) {
+        data[j][0] = j+1;
+      }
+      
+      var obj = { key : trendName , values: data};
+
+      res.send(obj);
+    }
+  });
+
 });
 
 /*************************************************************
@@ -56,42 +96,32 @@ router.get('/states', function(req, res) {
       res.status(500);
       res.send("Internal Server Error");
     } else {
+      var data = [];
+      for (var i = 0; i < result.length; i++) {
+        var obj = {};
+        obj.name = result[i];
+        obj.id = stateUtils.abbreviateState(result[i]);
+        data.push(obj);
+      }
       res.status(200);
-      res.send(result);
+      res.send(data);
     }
   });
 });
 
-//TODO
-router.get('/states/:statename/today', function(req, res) {
-  var state = req.params.statename;
-
-  res.status(200);
-  res.send('returns trends and tweet volume for that state for today ordered by aggregate tweet volume.');
-});
-
-//Returns the top distinct trends and tweet volume for that state for the last 7 days 
-//ordered by aggregate tweet volume in its cities.
-router.get('/states/:statename/weeklyvolume', function(req, res) {
+//Returns the distinct trends and tweet volume for that city in the last 24 hours ordered by tweet volume.
+router.get('/states/:statename/dailyvolume', function(req, res) {
   var stateName = req.params.statename;
 
-  query.weeklyTweetVolumeRankByState(stateName,function(result) {
+  query.currentTweetVolumeRankByState(stateName,function(result) {
     if (_.isEmpty(result)) {
-      res.status(404);
-      res.send("Currently no top trends for this state. Did you capitalize the state name?");
+      res.status(200);
+      res.send(['Empty']);
     } else {
       res.status(200);
       res.send(result);
     }
   });
-});
-
-//TODO
-router.get('/states/:statename/weeklytrends', function(req, res) {
-  var state = req.params.statename;
-
-  res.status(200);
-  res.send('returns the 10 top trends for that state for the last 7 days ordered by the aggregate number of days trending in its cities.');
 });
 
 /*************************************************************
@@ -109,7 +139,7 @@ router.get('/trends/day', function(req, res) {
       console.log("error", err);
 
       res.status(500);
-      res.send("Internal Server Error. Cannot read from database at this time.")
+      res.send("Internal Server Error. Cannot read from database at this time.");
     } else {
 
       res.status(200);
@@ -152,14 +182,6 @@ router.get('/trends/:trendname/state', function(req, res) {
   });
 });
 
-//TODO
-router.get('/trends/:trendname/volume', function(req, res) {
-  var trend = req.params.trendname;
-  
-  res.status(200);
-  res.send("returns tweet volume of the trend across all cities in the last 7 days.");
-});
-
 /*************************************************************
 GET /api/us/country/today
 GET /api/us/country/weekly
@@ -177,13 +199,6 @@ router.get('/country/today', function(req, res) {
       res.send(result);
     }
   });
-});
-
-//TODO
-router.get('/country/weekly', function(req, res) {
-
-  res.status(200);
-  res.send("returns the top 10 trends in the last week in the U.S. by number of cities having that trend over 7 days.");
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)

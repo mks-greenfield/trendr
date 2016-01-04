@@ -1,19 +1,19 @@
-angular.module('simon', [])
+angular.module('simon', ['simonFactory'])
 
-.controller('SimonController', function($scope, $http) {
-  $scope.getStuff = function() {
-    $http({
-        method: 'GET',
-        url: '/test'
-      })
-      .then(successCallback, errorCallback);
-  };
+.controller('SimonController', function($scope, Locations) {
 
-  var successCallback = function(response) {
-    // console.log("response.data", response.data);
-  };
-    
-  var errorCallback = function() {
-    // handle error
-  };
+  $scope.getSanFrancisco = Locations.getSanFrancisco;
+  $scope.getChicago = Locations.getChicago;
+  $scope.getSanDiego = Locations.getSanDiego;
+  $scope.getWashington = Locations.getWashington;
+  $scope.getSeattle = Locations.getSeattle;
+  $scope.getMiami = Locations.getMiami;
+  $scope.getNewYorkCity = Locations.getNewYorkCity;
+  $scope.getDenver = Locations.getDenver;
+  $scope.getPortland = Locations.getPortland;
+  $scope.getLasVegas = Locations.getLasVegas;
+  $scope.getLosAngeles = Locations.getLosAngeles;
+  $scope.getSacramento = Locations.getSacramento;
+  $scope.getPhoenix = Locations.getPhoenix;
+
 });
