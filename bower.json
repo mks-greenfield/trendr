@@ -25,6 +25,8 @@
     "angular-nvd3": "~1.0.5",
     "font-awesome": "~4.5.0",
     "sb-admin-2": "*",
+    "d3pie": "~0.1.9",
+    "d3": "~3.5.12",
     "angular-datamaps": "~0.1.2"
   }
 }

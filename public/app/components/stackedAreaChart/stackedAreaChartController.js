@@ -8,40 +8,41 @@ app.controller('stackedAreaChartController', function($scope, $http) {
 
   /* Chart options */
   $scope.options = {
-          chart: {
-              type: 'stackedAreaChart',
-              height: 450,
-              margin : {
-                  top: 20,
-                  right: 20,
-                  bottom: 50,
-                  left: 80
-              },
-              x: function(d){return d[0];},
-              y: function(d){return d[1];},
-              useVoronoi: false,
-              clipEdge: true,
-              duration: 100,
-              useInteractiveGuideline: true,
-              xAxis: {
-                  axisLabel: "Last 24 Hours",
-                  // showMaxMin: false,
-                  tickFormat: function(d) {
-                      //return d3.time.format('%x')(new Date(d))
-                     // return d+"days ago";
-                     return d;
-                  }
-              },
-              yAxis: {
-                  axisLabel: "Tweet Volume",
-                  tickFormat: function(d){
-                    return d;
-                    // return d3.format('r')(d);
-                      //d3.format(',.2f')(d);
-                  }
-              }
-          }
-      };
+    chart: {
+      type: 'stackedAreaChart',
+      height: 450,
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 40
+      },
+      x: function(d) {
+        return d[0];
+      },
+      y: function(d) {
+        return d[1];
+      },
+      useVoronoi: false,
+      clipEdge: true,
+      duration: 100,
+      useInteractiveGuideline: true,
+      xAxis: {
+        // showMaxMin: false,
+        tickFormat: function(d) {
+          //return d3.time.format('%x')(new Date(d))
+          // return d+"days ago";
+          // return "hey";
+          return d;
+        }
+      },
+      yAxis: {
+        tickFormat: function(d) {
+          return d3.format(',.2f')(d);
+        }
+      }
+    }
+  };
 
   $scope.data = [];
 
@@ -74,6 +75,30 @@ app.controller('stackedAreaChartController', function($scope, $http) {
   };
   var target = document.getElementById('spinner');
   var spinner = new Spinner(opts);
+
+    $scope.removeOne = function() {
+      console.log("remove one");
+      $scope.data.pop();
+      // $scope.api.update();
+    };
+
+  $scope.addTrend = function(trend) {
+    console.log("adding", trend);
+
+    if ($scope.selectedTrends.indexOf(trend) === -1) {
+      $scope.selectedTrends.push(trend);
+      var obj = {
+        "key": trend.name,
+        "values": [
+          [1, 23.041422681023],
+          [2, 19.854291255832],
+          [3, 21.02286281168],
+          [4, 20]
+        ]
+      };
+      $scope.data.push(obj);
+    }
+  };
 
   $scope.removeTrend = function(trend) {
     //console.log("remove", trend);
@@ -114,14 +139,14 @@ app.controller('stackedAreaChartController', function($scope, $http) {
       $http({
         method: 'GET',
         url: url,
-        }).then(function successCallback(response) {
-          // console.log("data", response.data);
-          var obj = response.data;
-          $scope.data.push(obj);
-        }, function errorCallback(response) {
-          // console.log("error", response);
-        });
-    }   
+      }).then(function successCallback(response) {
+        // console.log("data", response.data);
+        var obj = response.data;
+        $scope.data.push(obj);
+      }, function errorCallback(response) {
+        // console.log("error", response);
+      });
+    }
   };
 
   $scope.getCities = function() {
@@ -130,13 +155,15 @@ app.controller('stackedAreaChartController', function($scope, $http) {
       method: 'GET',
       url: '/api/us/cities'
     }).then(function successCallback(response) {
-        response.data.sort();
-        angular.forEach(response.data, function(value) {
-          $scope.cities.push({name: value});
+      response.data.sort();
+      angular.forEach(response.data, function(value) {
+        $scope.states.push({
+          name: value
         });
-      }, function errorCallback(response) {
-        console.log("error", response);
       });
+    }, function errorCallback(response) {
+      console.log("error", response);
+    });
   };
 
   $scope.getCitiesDailyTrends = function(stateName) {
@@ -144,28 +171,28 @@ app.controller('stackedAreaChartController', function($scope, $http) {
 
     $http({
       method: 'GET',
-      url: '/api/us/cities/'+stateName+'/dailyvolume'
+      url: '/api/us/cities/' + stateName + '/dailyvolume'
     }).then(function successCallback(response) {
-        spinner.stop();
-        var result = [];
+      spinner.stop();
+      var result = [];
 
-        angular.forEach(response.data, function(value, key) {
-          if (value === 0) {
-          } else {
-            var obj = {};
-            obj.name = key;
-            obj.tweet_volume = value;
-            
-            result.push(obj);
-          }
-        });
+      angular.forEach(response.data, function(value, key) {
+        if (value === 0) {} else {
+          var obj = {};
+          obj.name = key;
+          obj.tweet_volume = value;
 
-        $scope.trends = result;
-
-      }, function errorCallback(response) {
-        console.log("error", response);
+          result.push(obj);
+        }
       });
+
+      $scope.trends = result;
+
+    }, function errorCallback(response) {
+      console.log("error", response);
+    });
   };
+
 
   $scope.getCities();
 });
