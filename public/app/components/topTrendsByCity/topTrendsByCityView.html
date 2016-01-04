@@ -1,0 +1,37 @@
+<!-- <button ng-click='getStuff()'>POPULATE DB FROM trends/place</button> -->
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"> Trending hashtags in popular cities</h1>
+    </div>
+  </div>
+            
+	<div class="row">
+		<div class="col-md-3">
+			<div class="btn-group-vertical" role="group" aria-label="buttonGroup">
+			  <button class="btn btn-default" type="button" ng-click='getSanFrancisco()'>San Francisco Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getChicago()'>Chicago Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getSanDiego()'>San Diego Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getWashington()'>Washington Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getSeattle()'>Seattle Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getMiami()'>Miami Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getNewYorkCity()'>New York City Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getDenver()'>Denver Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getPortland()'>Portland Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getLasVegas()'>Las Vegas Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getLosAngeles()'>Los Angeles Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getSacramento()'>Sacramento Trends</button>
+				<button class="btn btn-default" type="button" ng-click='getPhoenix()'>Phoenix Trends</button>
+			</div>
+		</div>
+
+		<!-- Visualization of data via pie chart -->
+		<div class="col-md-9">
+			<div class="well well-lg">
+				<div id="pieChart"></div>
+			</div>
+		</div>
+</div>
+
+</div>

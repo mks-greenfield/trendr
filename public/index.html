@@ -56,6 +56,10 @@
             font-size: 25px;
             color: #fff;
         }
+
+        div.well {
+            height: 550px;
+        }
     </style> 
   </head>
 
@@ -67,13 +71,10 @@
                 <a class="navbar-brand" href="#/"><i class="fa fa-twitter"></i> trendr</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#/chart">Chart</a></li>
-                <li><a href="#/kevin">Kevin</a></li>
-                <li><a href="#/geetha">Geetha</a></li>
-                <li><a href="#/brandon">Brandon</a></li>
+                <!-- <li><a href="#/chart">Chart</a></li> -->
                 <li><a href="#/stackedAreaChart">City Trends Over Time</a></li>
-                <li><a href="#/simon">Simon</a></li>
-                <li><a href="#/usDataMap">usDataMap</a></li>
+                <li><a href="#/topTrendsByCity">Top Trends by City</a></li>
+                <li><a href="#/usDataMap">Top Trends by State</a></li>
             </ul>
         </div>
         
@@ -81,16 +82,12 @@
 
     <!-- add link to your route -->
 
-    <script src="app/components/chart/chartController.js"></script>
+    <script src="app/components/chart/chartController.js"></script> 
     <script src="app/components/home/homeController.js"></script>
-
-    <script src="app/components/brandon/brandonController.js"></script>
-    <script src="app/components/geetha/geethaController.js"></script>
-    <script src="app/components/kevin/kevinController.js"></script>
     <script src="app/components/stackedAreaChart/stackedAreaChartController.js"></script>
     <script src="app/components/usDataMap/usDataMapController.js"></script>
-    <script src="app/components/simon/simonController.js"></script>
-    <script src="app/components/simon/simonFactory.js"></script>
+    <script src="app/components/topTrendsByCity/topTrendsByCityController.js"></script>
+    <script src="app/components/topTrendsByCity/topTrendsByCityFactory.js"></script>
     <!-- add additional controller scripts here -->
 
     <script src="app/app.routes.js"></script>
