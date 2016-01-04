@@ -1,8 +1,7 @@
-<div class="container">
 
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header"> Trends by State</h1>
+      <h1 class="page-header"> State Trends</h1>
     </div>
   </div>
             
@@ -29,6 +28,7 @@
               <i class="fa fa-twitter fa-fw"></i> Current Top Trends for {{state}}
           </div>
           <div class="panel-body">
+              <div id='spinner'></div>
               <div class="list-group">
 
                 <div ng-show="trend.error" class="ng-hide">
@@ -50,5 +50,3 @@
     
   <!-- end row -->
   </div>
-
-</div>
