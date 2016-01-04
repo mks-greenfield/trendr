@@ -3,6 +3,7 @@ var router = express.Router();
 var query = require('../queries/usTrendQueries');
 var _ = require('underscore');
 var interpolateLineRange = require('line-interpolate-points');
+var stateUtils = require('../shared/stateAbbreviations');
 
 /*************************************************************
 GET /api/us/cities
@@ -95,42 +96,32 @@ router.get('/states', function(req, res) {
       res.status(500);
       res.send("Internal Server Error");
     } else {
+      var data = [];
+      for (var i = 0; i < result.length; i++) {
+        var obj = {};
+        obj.name = result[i];
+        obj.id = stateUtils.abbreviateState(result[i]);
+        data.push(obj);
+      }
       res.status(200);
-      res.send(result);
+      res.send(data);
     }
   });
 });
 
-//TODO
-router.get('/states/:statename/today', function(req, res) {
-  var state = req.params.statename;
-
-  res.status(200);
-  res.send('returns trends and tweet volume for that state for today ordered by aggregate tweet volume.');
-});
-
-//Returns the top distinct trends and tweet volume for that state for the last 7 days 
-//ordered by aggregate tweet volume in its cities.
-router.get('/states/:statename/weeklyvolume', function(req, res) {
+//Returns the distinct trends and tweet volume for that city in the last 24 hours ordered by tweet volume.
+router.get('/states/:statename/dailyvolume', function(req, res) {
   var stateName = req.params.statename;
 
-  query.weeklyTweetVolumeRankByState(stateName,function(result) {
+  query.currentTweetVolumeRankByState(stateName,function(result) {
     if (_.isEmpty(result)) {
-      res.status(404);
-      res.send("Currently no top trends for this state. Did you capitalize the state name?");
+      res.status(200);
+      res.send(['Empty']);
     } else {
       res.status(200);
       res.send(result);
     }
   });
-});
-
-//TODO
-router.get('/states/:statename/weeklytrends', function(req, res) {
-  var state = req.params.statename;
-
-  res.status(200);
-  res.send('returns the 10 top trends for that state for the last 7 days ordered by the aggregate number of days trending in its cities.');
 });
 
 /*************************************************************
@@ -191,14 +182,6 @@ router.get('/trends/:trendname/state', function(req, res) {
   });
 });
 
-//TODO
-router.get('/trends/:trendname/volume', function(req, res) {
-  var trend = req.params.trendname;
-  
-  res.status(200);
-  res.send("returns tweet volume of the trend across all cities in the last 7 days.");
-});
-
 /*************************************************************
 GET /api/us/country/today
 GET /api/us/country/weekly
@@ -216,13 +199,6 @@ router.get('/country/today', function(req, res) {
       res.send(result);
     }
   });
-});
-
-//TODO
-router.get('/country/weekly', function(req, res) {
-
-  res.status(200);
-  res.send("returns the top 10 trends in the last week in the U.S. by number of cities having that trend over 7 days.");
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)
