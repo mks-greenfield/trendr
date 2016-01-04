@@ -118,7 +118,7 @@ locationTrendSchema.pre("save", function(next, done) {
 //   }
 // ];
  
-// This loop parses the data and adds it into the database based on our schema.  This code is in cityTrends.js as the function addTrendToDatabase.
+// This loop parses the data and adds it into the database based on our schema.  This code is in cityTrends.js as the function addTrendsToDatabase.
 
 // for (var i = 0; i < apiArr[0].trends.length; i++) {
 //   new LocationTrend({
