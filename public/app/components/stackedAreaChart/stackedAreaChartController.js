@@ -157,7 +157,7 @@ app.controller('stackedAreaChartController', function($scope, $http) {
     }).then(function successCallback(response) {
       response.data.sort();
       angular.forEach(response.data, function(value) {
-        $scope.states.push({
+        $scope.cities.push({
           name: value
         });
       });
