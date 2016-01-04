@@ -7,6 +7,7 @@ app.controller('usDataMapController', function($scope,$http) {
   $scope.states = [];
   $scope.trend = {error: null};
 
+  // D3 map config
   $scope.mapObject = {
     scope: 'usa',
     options: {
@@ -25,6 +26,7 @@ app.controller('usDataMapController', function($scope,$http) {
     }
   };
 
+  // Spinner
   var opts = {
     lines: 13, // The number of lines to draw
     length: 28, // The length of each line
@@ -55,7 +57,7 @@ app.controller('usDataMapController', function($scope,$http) {
     $scope.getStatesDailyTrends(geography.properties.name);
   }
 
-  //get all states with available trends
+  //get top ten current trends for a state
   $scope.getStatesDailyTrends = function(stateName) {
     spinner.spin(target);
 
@@ -90,9 +92,9 @@ app.controller('usDataMapController', function($scope,$http) {
         console.log("error", response);
       });
   };
-
+  
+  //get available states with trends
   $scope.getStates = function() {
-
     $http({
       method: 'GET',
       url: '/api/us/states'
@@ -109,7 +111,7 @@ app.controller('usDataMapController', function($scope,$http) {
         console.log("error", response);
       });
   };
-
+  
   $scope.getStates();
 
 });
