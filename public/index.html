@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">  <!-- it's important for d3.js -->
-
+    
     <!-- Angular -->
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
@@ -43,19 +43,26 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- font awesome -->
-     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font-size: 25px;
+            color: #fff;
+        }
+    </style> 
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse static">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">TRENDR</a>
+                <a class="navbar-brand" href="#/"><i class="fa fa-twitter"></i> trendr</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#/">Home</a></li>
                 <li><a href="#/chart">Chart</a></li>
                 <li><a href="#/kevin">Kevin</a></li>
                 <li><a href="#/geetha">Geetha</a></li>
@@ -84,7 +91,9 @@
     <script src="app/app.routes.js"></script>
     <script src="app/app.module.js"></script>
 
-    <div ng-view></div>
+    <div class="container">
+        <div ng-view></div>
+    </div>
   </body>
 
   </html>
