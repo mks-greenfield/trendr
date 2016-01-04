@@ -124,7 +124,7 @@ locationTrendSchema.pre("save", function(next, done) {
 //   new LocationTrend({
 //     location: apiArr[0].locations[0].name,
 //     trend_name: apiArr[0].trends[i].name,
-//     tweet_volume: apiArr[0].trends[i].tweet_volume
+//     tweet_volume: apiArr[0].trends[i].tweet_volume,
 //     created_at: apiArr[0].created_at
 //   })
 //   .save(function(err) {
