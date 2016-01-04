@@ -2,7 +2,7 @@ Trendr
 -------
 
 ## A trend visualization app for twitter ##
-___
+
   Have you ever wondered what is trending and where? Trendr is a new way to quickly and easily see trends across the US in an easy to use, easy to understand format. See the progress of trends over time, learn about events as the occur, or just check out what's going on in your favorite cities all at the click of a button...with Trendr.
   
 ### Problem ###
