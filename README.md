@@ -43,9 +43,11 @@ Product Backlog
 
 - Please see the Github issues tab for user stories.
 
-Trendr Knowledge Base
+Trendr Project Resources
 -------------------
 
+- [Contributing to Trendr: things to ponder](https://github.com/mks-greenfield/planning/wiki/Contributing-to-Trendr:-things-to-ponder)
+- [Environment variables in production and development](https://github.com/mks-greenfield/planning/wiki/Environment-Variables)
 - [Using Trendr's Mongolab Data](https://github.com/mks-greenfield/planning/wiki/Using-Trendr's-Mongolab-Data)
 - [Using Twitter REST API](https://github.com/mks-greenfield/planning/wiki/Using-Twitter-REST-API)
 - [Deploying to Heroku](https://github.com/mks-greenfield/planning/wiki/Deploying-to-Heroku)
