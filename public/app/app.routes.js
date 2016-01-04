@@ -16,7 +16,7 @@ angular.module('routes', [])
     controller: 'stackedAreaChartController'
   })
   .when('/topTrendsByCity', {
-    templateUrl: './app/components/topTrendsByCity/TopTrendsByCityView.html',
+    templateUrl: './app/components/topTrendsByCity/topTrendsByCityView.html',
     controller: 'TopTrendsByCityController'
   })
   .when('/usDataMap', {
