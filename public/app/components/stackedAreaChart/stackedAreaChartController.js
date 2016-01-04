@@ -25,10 +25,7 @@ app.controller('stackedAreaChartController', function($scope, $http) {
               useInteractiveGuideline: true,
               xAxis: {
                   axisLabel: "Last 24 Hours",
-                  // showMaxMin: false,
                   tickFormat: function(d) {
-                      //return d3.time.format('%x')(new Date(d))
-                     // return d+"days ago";
                      return d;
                   }
               },
@@ -36,8 +33,6 @@ app.controller('stackedAreaChartController', function($scope, $http) {
                   axisLabel: "Tweet Volume",
                   tickFormat: function(d){
                     return d;
-                    // return d3.format('r')(d);
-                      //d3.format(',.2f')(d);
                   }
               }
           }
