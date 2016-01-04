@@ -3,6 +3,7 @@ var router = express.Router();
 var query = require('../queries/usTrendQueries');
 var _ = require('underscore');
 var interpolateLineRange = require('line-interpolate-points');
+var stateUtils = require('../shared/stateAbbreviations');
 
 /*************************************************************
 GET /api/us/cities
@@ -95,8 +96,15 @@ router.get('/states', function(req, res) {
       res.status(500);
       res.send("Internal Server Error");
     } else {
+      var data = [];
+      for (var i = 0; i < result.length; i++) {
+        var obj = {};
+        obj.name = result[i];
+        obj.id = stateUtils.abbreviateState(result[i]);
+        data.push(obj);
+      }
       res.status(200);
-      res.send(result);
+      res.send(data);
     }
   });
 });
