@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var Twitter = require('twitter');
 var utilities = require('../shared/shared');
+var LocationTrend = require('../../mongodb/models/locationTrend.js');
 
 /*************************************************************
 Twitter Config
@@ -42,8 +43,8 @@ var paramArray = [
 ];
 
 
-exports.returnTrendByCity = function(callback) {
-  // returnTrendByCity makes an API call to each location in the paramsArray and adds the resulting data to the database. 
+exports.returnTrendsByCity = function(callback) {
+  // returnTrendsByCity makes an API call to each location in the paramsArray and adds the resulting data to the database. 
   var errorHandler = function(err) {
     if (err) {
       console.log('error occured when trying to save to database');
