@@ -38,6 +38,16 @@ Getting Started with the Cron Job
 
 - See the [Cron Job README](https://github.com/mks-greenfield/cron-job).
 
+Product Backlog
+-------------------
+
+- Please see the Github issues tab for user stories.
+
 Trendr Knowledge Base
 -------------------
 
+- [Using Trendr's Mongolab Data](https://github.com/mks-greenfield/planning/wiki/Using-Trendr's-Mongolab-Data)
+- [Using Twitter REST API](https://github.com/mks-greenfield/planning/wiki/Using-Twitter-REST-API)
+- [Deploying to Heroku](https://github.com/mks-greenfield/planning/wiki/Deploying-to-Heroku)
+- [Running a cron job on EC2](https://github.com/mks-greenfield/planning/wiki/Running-a-cron-job-on-EC2)
+- [Using NPM](https://github.com/mks-greenfield/planning/wiki/Using-NPM)
