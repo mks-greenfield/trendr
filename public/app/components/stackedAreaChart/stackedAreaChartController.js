@@ -8,41 +8,35 @@ app.controller('stackedAreaChartController', function($scope, $http) {
 
   /* Chart options */
   $scope.options = {
-    chart: {
-      type: 'stackedAreaChart',
-      height: 450,
-      margin: {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 40
-      },
-      x: function(d) {
-        return d[0];
-      },
-      y: function(d) {
-        return d[1];
-      },
-      useVoronoi: false,
-      clipEdge: true,
-      duration: 100,
-      useInteractiveGuideline: true,
-      xAxis: {
-        // showMaxMin: false,
-        tickFormat: function(d) {
-          //return d3.time.format('%x')(new Date(d))
-          // return d+"days ago";
-          // return "hey";
-          return d;
-        }
-      },
-      yAxis: {
-        tickFormat: function(d) {
-          return d3.format(',.2f')(d);
-        }
-      }
-    }
-  };
+          chart: {
+              type: 'stackedAreaChart',
+              height: 450,
+              margin : {
+                  top: 20,
+                  right: 20,
+                  bottom: 50,
+                  left: 80
+              },
+              x: function(d){return d[0];},
+              y: function(d){return d[1];},
+              useVoronoi: false,
+              clipEdge: true,
+              duration: 100,
+              useInteractiveGuideline: true,
+              xAxis: {
+                  axisLabel: "Last 24 Hours",
+                  tickFormat: function(d) {
+                     return d;
+                  }
+              },
+              yAxis: {
+                  axisLabel: "Tweet Volume",
+                  tickFormat: function(d){
+                    return d;
+                  }
+              }
+          }
+      };
 
   $scope.data = [];
 
