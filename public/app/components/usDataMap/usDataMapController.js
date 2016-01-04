@@ -1,6 +1,6 @@
 var app = angular.module('usDataMap', ['datamaps']);
 
-app.controller('usDataMapController', function($scope,$http) {
+app.controller('usDataMapController', function($scope, $http) {
 
   $scope.trends = [];
   $scope.state = '';
@@ -22,8 +22,7 @@ app.controller('usDataMapController', function($scope,$http) {
       'BLUE': '#428bca',
       'defaultFill': '#DDDDDD'
     },
-    data: {
-    }
+    data: {}
   };
 
   // Spinner
@@ -55,7 +54,7 @@ app.controller('usDataMapController', function($scope,$http) {
   $scope.selectState = function(geography) {
     $scope.$apply(function(){$scope.state = geography.properties.name;});
     $scope.getStatesDailyTrends(geography.properties.name);
-  }
+  };
 
   //get top ten current trends for a state
   $scope.getStatesDailyTrends = function(stateName) {
@@ -63,7 +62,7 @@ app.controller('usDataMapController', function($scope,$http) {
 
     $http({
       method: 'GET',
-      url: '/api/us/states/'+stateName+'/dailyvolume'
+      url: '/api/us/states/' + stateName + '/dailyvolume'
     }).then(function successCallback(response) {
         spinner.stop();
         if (response.data[0] === "Empty") {
