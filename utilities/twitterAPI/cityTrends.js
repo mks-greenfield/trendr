@@ -22,11 +22,8 @@ Endpoint returns the trending hashtags for a specified WOEID within a 24 hour ti
 **************************************************************/
 
   // specify id (WOEID) for each city then make a get request to the end point.
-  // These are stored on my local DB atm (Simon).
   // Be careful not to call this same location twice or it will duplicate data in the DB.
   // Maybe need to figure out how to prevent this.
-
-
 
 var paramArray = [
   {id: 2487956}, // San Francisco
@@ -46,7 +43,7 @@ var paramArray = [
 
 
 exports.returnTrendByCity = function(callback) {
-  // this for loop was to populate db with all locations listed above, making an api call to each location id
+  // returnTrendByCity makes an API call to each location in the paramsArray and adds the resulting data to the database. 
   var errorHandler = function(err) {
     if (err) {
       console.log('error occured when trying to save to database');
@@ -54,13 +51,14 @@ exports.returnTrendByCity = function(callback) {
     }
     console.log('trend saved to db!');
   };
-  
-  var addTrendToDatabase = function(error, tweets, response) {
+
+  var addTrendsToDatabase = function(error, tweets, response) {
     if (error) {
       console.log('ERROR OCCURED', error);
       throw error;
     }
 
+    // this for loop was to populate db with all locations listed above, making an api call to each location id
     for (var i = 0; i < tweets[0].trends.length; i++) {
       if (tweets[0].trends[i].tweet_volume) {
         new LocationTrend({
@@ -68,7 +66,6 @@ exports.returnTrendByCity = function(callback) {
             trend_name: tweets[0].trends[i].name,
             tweet_volume: tweets[0].trends[i].tweet_volume,
             created_at: tweets[0].created_at
-
           })
           .save(errorHandler);
       }
@@ -79,16 +76,8 @@ exports.returnTrendByCity = function(callback) {
     }
   };
 
-
   for (var i = 0; i < paramArray.length; i++) {
     var params = paramArray[i];
-
-
-    client.get('trends/place', params, addTrendToDatabase);
-
-  } // end for loop bracket
+    client.get('trends/place', params, addTrendsToDatabase);
+  }
 };
-
-
-
-
