@@ -1,47 +1,49 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h1 class="page-header"> State Trends</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"> State Trends</h1>
+    </div>
   </div>
-</div>
-            
-<div class="row">
+              
+  <div class="row">
 
-  <!-- D3 Data Map -->
-  <div class="col-lg-8">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-            <i class="fa fa-bar-chart-o fa-fw"></i> Select a State
-          </div>
+    <!-- D3 Data Map -->
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <i class="fa fa-bar-chart-o fa-fw"></i> Select a State
+            </div>
 
-          <div class="panel-body">
-            <div id='spinner'></div>
-           <datamap  ng-model="state" map="mapObject" on-click="selectState"></datamap>
-          </div>
-      </div>
-  </div>
-
-  <!--  TOP TRENDS -->
-  <div class="col-lg-4">
-    <div class="panel panel-default">
-        <div ng-model="state" class="panel-heading">
-            <i class="fa fa-twitter fa-fw"></i> Current Top Trends for {{state}}
-        </div>
-        <div class="panel-body">
-            <div id='spinner'></div>
-            <div class="list-group">
-
-              <div ng-show="trend.error" class="ng-hide">
-                <div class="list-group-item"> {{trend.error}} </div>
-              </div>
-
-              <div class="list-group-item" ng-repeat="trend in trends">
-                  <a ng-href="http://twitter.com/search?q={{trend.name | escape}}" target="_blank"> {{trend.name}} </a>
-                  {{trend.tweet_volume}} tweets
-              </div>  
+            <div class="panel-body">
+              <div id='spinner'></div>
+             <datamap  ng-model="state" map="mapObject" on-click="selectState"></datamap>
             </div>
         </div>
-    </div> 
+    </div>
+
+    <!--  TOP TRENDS -->
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+          <div ng-model="state" class="panel-heading">
+              <i class="fa fa-twitter fa-fw"></i> Current Top Trends for {{state}}
+          </div>
+          <div class="panel-body">
+              <div id='spinner'></div>
+              <div class="list-group">
+
+                <div ng-show="trend.error" class="ng-hide">
+                  <div class="list-group-item"> {{trend.error}} </div>
+                </div>
+
+                <div class="list-group-item" ng-repeat="trend in trends">
+                    <a ng-href="http://twitter.com/search?q={{trend.name | escape}}" target="_blank"> {{trend.name}} </a>
+                    {{trend.tweet_volume}} tweets
+                </div>  
+              </div>
+          </div>
+      </div> 
+    </div>
+              
+  <!-- end row -->
   </div>
-            
-<!-- end row -->
 </div>
