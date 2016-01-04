@@ -1,4 +1,4 @@
-Trendr: A trend visualization app for Twitter
+Trendr: a trend visualization app for Twitter
 --------
 
 #### Overview of Tech Stack
@@ -38,12 +38,17 @@ Getting Started with the Cron Job
 
 - See the [Cron Job README](https://github.com/mks-greenfield/cron-job).
 
+Contributing
+-------------------
+
+- See `_CONTRIBUTING.md`.
+
 Product Backlog
 -------------------
 
 - Please see the Github issues tab for user stories.
 
-Trendr Project Resources
+Resources and Knowledge Base
 -------------------
 
 - [Contributing to Trendr: things to ponder](https://github.com/mks-greenfield/planning/wiki/Contributing-to-Trendr:-things-to-ponder)
