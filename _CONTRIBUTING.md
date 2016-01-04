@@ -1,4 +1,5 @@
-### Checklist
+Checklist
+-----------------
 
 - [ ] Did I create my work branch off of master (didn't cut new branches from existing feature branches)?
 - [ ] Did I follow the correct naming convention for my branch?
