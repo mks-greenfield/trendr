@@ -12,11 +12,7 @@ Trendr
    Trendr's intuitive interface allows active Twitter users and even non-"digital natives" to see the current most popular hashtags broken down by location. Viewing Twitter data has never been this `#easy`. 
 
   >"Don't start trends, follow them! With Trendr..." <br> **-Polina, Scrum Master** <br> 
-  ___ 
-  
-
   > "My grandson's always talking about the Twitter, but I could never figure out how to use it. Now I can at least keep up on the latest hashtags and stay current with the youths #yolo"  
   > **-Agatha, 85** <br> Illinois
-  ___
 
-  To "see" whats happening now on Twitter check out our website at <http://mks-trendr.herokuapp.com/>
+To "see" whats happening now on Twitter check out our website at <http://mks-trendr.herokuapp.com/>
