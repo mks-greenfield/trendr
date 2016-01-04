@@ -135,6 +135,12 @@ Understand why the code is necessary (bug, user experience, refactoring). Then:
 * Try to respond to every comment.
 * Wait for the Scrum Master to merge your Pull Request.
 
+Resources
+-----------------
+
+* [Getting confident with Git Part 1](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-1)
+* [Getting confident with Git Part 2: Managing History](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-2:-Managing-History)
+* [Getting confident with Git Part 3: Undoing](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-3:-Undoing)
 
 
 
