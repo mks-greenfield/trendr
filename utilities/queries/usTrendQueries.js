@@ -99,6 +99,68 @@ exports.distinctStates = function(cb) {
          .exec(cb);
 };
 
+//Return all distinct trends for a state in the last 3 hours
+exports.currentTrendsByState = function(stateName, cb) {
+  USTrend.distinct("trend_name")
+         .where({state: stateName,
+                 created_at: {$gt: threeHoursAgo, $lt: today}})
+         .exec(cb);
+};
+
+//Returns all tweet volume for a trend in a state over the last 3 hours
+exports.currentTweetVolumeByStateTrend = function(trendName, stateName, cb) {
+  USTrend.find({state: stateName, trend_name: trendName})
+         .where({created_at: {$gt: threeHoursAgo, $lt: today}})
+         .select('trend_name tweet_volume created_at')
+         .exec(cb);
+};
+
+//Returns the distinct trends and tweet volume for that state for
+//the last three hours ordered by tweet volume
+exports.currentTweetVolumeRankByState = function(stateName, cb) {
+  var state_trend_count = {};
+
+  exports.currentTrendsByState(stateName, function(err, trends) {
+
+    if (err) {
+      console.log("error", err);
+    } else {
+
+      async.each(trends, function(trend, next) {
+
+        exports.currentTweetVolumeByStateTrend(trend, stateName, function(err, result) {
+          if (err) {
+            console.log("error", err);
+          } else {
+
+            var count =  _.reduce(result, function(memo, item) {
+                            var num = item.tweet_volume || 0;
+                            return memo + num; 
+                          }, 0);
+
+            state_trend_count[trend] = count;
+            next();
+          }
+        });
+
+      }, function(err) {
+        if (err) {
+          console.log("A trend failed to process.");
+
+        } else {
+          //sort by keys (tweet volume) in descending order
+          var result = utilities.sortKeysBy(state_trend_count);
+          cb(result);   
+        }
+      });
+    }
+  });
+};
+
+// exports.currentTweetVolumeRankByState("Texas", function(result) {
+//   console.log("result", result);
+// });
+
 /*************************************************************
 By Trend
 **************************************************************/
