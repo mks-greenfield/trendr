@@ -44,18 +44,14 @@
     <!-- Bootstrap CDN to test versions of bootstrap for debugging-->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    
     <!-- font awesome -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Font -->
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <style type="text/css">
-        .navbar-brand {
-            font-family: 'Pacifico', cursive;
-            font-size: 25px;
-            color: #fff;
-        }
-    </style> 
+
+    <!-- CSS -->
+    <link href='./assets/css/styles.css' rel='stylesheet' type='text/css'>
+
   </head>
 
   <body>
@@ -66,12 +62,9 @@
                 <a class="navbar-brand" href="#/"><i class="fa fa-twitter"></i> trendr</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#/chart">Chart</a></li>
-                <li><a href="#/kevin">Kevin</a></li>
-                <li><a href="#/geetha">Geetha</a></li>
-                <li><a href="#/brandon">Brandon</a></li>
+                <!-- <li><a href="#/chart">Chart</a></li> -->
                 <li><a href="#/stackedAreaChart">City Trends Over Time</a></li>
-                <li><a href="#/simon">Simon</a></li>
+                <li><a href="#/topTrendsByCity">Top Trends by City</a></li>
                 <li><a href="#/usDataMap">State Trends</a></li>
             </ul>
         </div>
@@ -82,14 +75,10 @@
 
     <script src="app/components/chart/chartController.js"></script>
     <script src="app/components/home/homeController.js"></script>
-
-    <script src="app/components/brandon/brandonController.js"></script>
-    <script src="app/components/geetha/geethaController.js"></script>
-    <script src="app/components/kevin/kevinController.js"></script>
     <script src="app/components/stackedAreaChart/stackedAreaChartController.js"></script>
     <script src="app/components/usDataMap/usDataMapController.js"></script>
-    <script src="app/components/simon/simonController.js"></script>
-    <script src="app/components/simon/simonFactory.js"></script>
+    <script src="app/components/topTrendsByCity/topTrendsByCityController.js"></script>
+    <script src="app/components/topTrendsByCity/topTrendsByCityFactory.js"></script>
     <!-- add additional controller scripts here -->
 
     <script src="app/app.routes.js"></script>
