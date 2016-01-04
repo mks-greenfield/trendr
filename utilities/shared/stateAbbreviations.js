@@ -54,5 +54,5 @@ var states = {
 };
 
 exports.abbreviateState = function(input) {
-    return states[input] || 'n/a';
+    return states[input] || null;
 };

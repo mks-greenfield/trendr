@@ -115,8 +115,8 @@ router.get('/states/:statename/dailyvolume', function(req, res) {
 
   query.currentTweetVolumeRankByState(stateName,function(result) {
     if (_.isEmpty(result)) {
-      res.status(404);
-      res.send("Currently no top trends for this city. Did you capitalize the city name?");
+      res.status(200);
+      res.send(['Empty']);
     } else {
       res.status(200);
       res.send(result);
@@ -182,14 +182,6 @@ router.get('/trends/:trendname/state', function(req, res) {
   });
 });
 
-//TODO
-router.get('/trends/:trendname/volume', function(req, res) {
-  var trend = req.params.trendname;
-  
-  res.status(200);
-  res.send("returns tweet volume of the trend across all cities in the last 7 days.");
-});
-
 /*************************************************************
 GET /api/us/country/today
 GET /api/us/country/weekly
@@ -207,13 +199,6 @@ router.get('/country/today', function(req, res) {
       res.send(result);
     }
   });
-});
-
-//TODO
-router.get('/country/weekly', function(req, res) {
-
-  res.status(200);
-  res.send("returns the top 10 trends in the last week in the U.S. by number of cities having that trend over 7 days.");
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)

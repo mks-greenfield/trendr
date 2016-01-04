@@ -30,6 +30,11 @@
           </div>
           <div class="panel-body">
               <div class="list-group">
+
+                <div ng-show="trend.error" class="ng-hide">
+                  <div class="list-group-item"> {{trend.error}} </div>
+                </div>
+
                 <div class="list-group-item" ng-repeat="trend in trends">
                     <a ng-href="http://twitter.com/search?q={{trend.name | escape}}" target="_blank"> {{trend.name}} </a>
                     {{trend.tweet_volume}} tweets

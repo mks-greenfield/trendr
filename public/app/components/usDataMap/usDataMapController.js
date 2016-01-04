@@ -5,42 +5,27 @@ app.controller('usDataMapController', function($scope,$http) {
   $scope.trends = [];
   $scope.state = '';
   $scope.states = [];
+  $scope.trend = {error: null};
 
   $scope.mapObject = {
     scope: 'usa',
     options: {
       width: 800,
-      // legendHeight: 60 // optionally set the padding for the legend
     },
     geographyConfig: {
-      highlighBorderColor: '#306596',
+      highlighBorderColor: '#5bc0de',
       highlighBorderWidth: 2,
-      highlightFillColor: '#306596',
+      highlightFillColor: '#5bc0de',
     },
-    // fills: {
-    //   'HIGH': '#CC4731',
-    //   'MEDIUM': '#306596',
-    //   'LOW': '#667FAF',
-    //   'defaultFill': '#DDDDDD'
-    // },
+    fills: {
+      'BLUE': '#428bca',
+      'defaultFill': '#DDDDDD'
+    },
     data: {
-      // "AZ": {
-      //   "fillKey": "#306596",
-      // }
-    //   "CO": {
-    //     "fillKey": "HIGH",
-    //   },
-    //   "DE": {
-    //     "fillKey": "LOW",
-    //   },
-    //   "GA": {
-    //     "fillKey": "MEDIUM",
-    //   }
     }
   };
 
   $scope.selectState = function(geography) {
-    console.log(geography.id); //state ID
     $scope.$apply(function(){$scope.state = geography.properties.name;});
     $scope.getStatesDailyTrends(geography.properties.name);
   }
@@ -54,6 +39,11 @@ app.controller('usDataMapController', function($scope,$http) {
       url: '/api/us/states/'+stateName+'/dailyvolume'
     }).then(function successCallback(response) {
         // spinner.stop();
+        if (response.data[0] === "Empty") {
+          $scope.trends = [];
+          $scope.trend.error = "There are no available trends for this state. Please try another.";
+        } else {
+          
         var result = [];
 
         angular.forEach(response.data, function(value, key) {
@@ -67,7 +57,9 @@ app.controller('usDataMapController', function($scope,$http) {
           }
         });
         //take top 10 trends
+        $scope.trend.error = null;
         $scope.trends = result.slice(1, 11);
+        }
 
       }, function errorCallback(response) {
         console.log("error", response);
@@ -80,11 +72,14 @@ app.controller('usDataMapController', function($scope,$http) {
       method: 'GET',
       url: '/api/us/states'
     }).then(function successCallback(response) {
-        response.data.sort();
-        angular.forEach(response.data, function(value) {
-          $scope.states.push({name: value});
-        });
-        console.log($scope.states);
+
+        $scope.states = response.data;
+        //add data to map object
+        for (var i = 0; i < response.data.length; i++) {
+          if (response.data[i].id) {
+            $scope.mapObject.data[response.data[i].id] = {"fillKey": "BLUE"};
+          }
+        }
       }, function errorCallback(response) {
         console.log("error", response);
       });
