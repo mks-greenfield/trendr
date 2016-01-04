@@ -5,8 +5,6 @@ Checklist
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
 - [ ] Do all of my changes directly relate to this change?
-- [ ] Did I rebase the upstream master branch after I finished all my
-  work?
 - [ ] Did I write a clear pull request message detailing what changes I made?
 - [ ] Did I get a code review?
 - [ ] Did I make any requested changes from that code review?
@@ -32,6 +30,11 @@ $ git branch -a
 1. Clone from the forked version on your Github account to your local machine. `git clone https://github.com/<USER-NAME>/<REPO_NAME>.git`
 1. Add a remote pointing to the **original** (upstream) repository. `git remote add upstream https://github.com/<REPOSITORY_NAME>/repository.git`
 
+#### Updating your fork
+
+1. `git pull upstream development`
+2. `npm install` to install both NPM and Bower dependencies
+
 #### Writing and Committing Features
 
 ```
@@ -39,14 +42,14 @@ $ git checkout -b feat-branch origin/development
 Branch development set up to track remote branch development from origin.
 Switched to a new branch 'feat-branch'
 $ git branch -a
-$ git pull --rebase upstream development
+$ git pull upstream development
 From https://github.com/mks-greenfield/trendr
  * branch            development -> FETCH_HEAD
 Already up-to-date.
 $ git add -A
 $ git status
 $ git commit -m "[feat] Add feature"
-$ git pull --rebase upstream development
+$ git pull upstream development
 $ git push origin feat-branch
 ```
 
@@ -71,7 +74,7 @@ $ git push origin feat-branch
 
 #### Merging a Feature Branch and opening a Pull Request
 
-1. Pull updated code from the original source repo into your local clone by running `git pull --rebase upstream master`.
+1. Pull updated code from the original source repo into your local clone by running `git pull upstream master`.
 1. Push your feature branch to a branch on **your** forked Repository on Github: `git push origin <branch-name>`. 
 
 Commit Message Style
