@@ -168,7 +168,7 @@ By Trend
 //returns all distinct trends in the last day
 exports.distinctTrendsToday = function(cb) {
   USTrend.distinct("trend_name")
-         .where({created_at: {$gt: twentyFourHoursAgo, $lt: today}})
+         .where({created_at: {$gt: threeHoursAgo, $lt: today}})
          .exec(cb);
 };
 
@@ -177,7 +177,7 @@ exports.cityCountTrendingToday = function(trendName, cb) {
   USTrend.distinct("location_name")
          .count()
          .where({trend_name : trendName,
-                 created_at: {$gt: twentyFourHoursAgo, $lt: today}})
+                 created_at: {$gt: threeHoursAgo, $lt: today}})
          .exec(cb);
 };
 
