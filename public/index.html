@@ -55,8 +55,8 @@
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <!-- top navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#/"><i class="fa fa-twitter"></i> trendr</a>
@@ -84,9 +84,18 @@
     <script src="app/app.routes.js"></script>
     <script src="app/app.module.js"></script>
 
-    <div class="container">
-        <div ng-view></div>
-    </div>
+    <!-- took out container -->
+    <div ng-view></div>
+
+    <!-- bottom navbar -->
+    <section class="footer text-center">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>Copyright Trendr 2016</p>
+            </div>
+        </div>
+    </section>
+  
   </body>
 
   </html>
