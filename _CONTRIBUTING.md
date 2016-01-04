@@ -1,7 +1,7 @@
 Checklist
 -----------------
 
-- [ ] Did I create my work branch off of master (didn't cut new branches from existing feature branches)?
+- [ ] Did I create my work branch off of **development** (didn't cut new branches from existing feature branches)?
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
 - [ ] Do all of my changes directly relate to this change?
@@ -53,7 +53,7 @@ $ git pull upstream development
 $ git push origin feat-branch
 ```
 
-1. Create a feature branch from master. `git checkout -b [name_of_your_new_branch]`
+1. Create a feature branch from your local master. `git checkout -b [name_of_your_new_branch]`
   - Prefix your branch name with what you are working on:
       - Example: `feat-authentication`
       - bug-...
@@ -74,7 +74,7 @@ $ git push origin feat-branch
 
 #### Merging a Feature Branch and opening a Pull Request
 
-1. Pull updated code from the original source repo into your local clone by running `git pull upstream master`.
+1. Pull updated code from the original source repo into your local clone by running `git pull upstream development`.
 1. Push your feature branch to a branch on **your** forked Repository on Github: `git push origin <branch-name>`. 
 
 Commit Message Style
