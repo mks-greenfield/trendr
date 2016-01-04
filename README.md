@@ -52,6 +52,7 @@ Resources and Knowledge Base
 -------------------
 
 - [Contributing to Trendr: things to ponder](https://github.com/mks-greenfield/planning/wiki/Contributing-to-Trendr:-things-to-ponder)
+- [Trendr file structure](https://github.com/mks-greenfield/planning/wiki/Trendr-File-Structure)
 - [Environment variables in production and development](https://github.com/mks-greenfield/planning/wiki/Environment-Variables)
 - [Using Trendr's Mongolab Data](https://github.com/mks-greenfield/planning/wiki/Using-Trendr's-Mongolab-Data)
 - [Using Twitter REST API](https://github.com/mks-greenfield/planning/wiki/Using-Twitter-REST-API)
