@@ -68,8 +68,8 @@ router.get('/cities/:cityname/:trendname', function(req, res) {
 
       var data = interpolateLineRange(lineRange, 24);
 
-      for (var i = 0; i < data.length; i++) {
-        data[i][0] = i+1;
+      for (var j = 0; j < data.length; j++) {
+        data[j][0] = j+1;
       }
       
       var obj = { key : trendName , values: data};
