@@ -9,10 +9,9 @@ Trendr
    Previously seeing what was going on on Twitter required you to actually be on Twitter and have a working knowledge of its complex search system. Even still there was no intuitive way to break down the trends by location or see their progression over time. 
   
 ### Solution ###
-   Trendr's intuitive interface allows active Twitter users and even non-"digital natives" to see the current most popular hashtags broken down by location, or see what trends are most popular in those. Viewing Twitter data has never been this `#easy`. 
+   Trendr's intuitive interface allows active Twitter users and even non-"digital natives" to see the current most popular hashtags broken down by location. Viewing Twitter data has never been this `#easy`. 
 
-
-  >"Don't start trends, follow them! With trendr..." <br> **-Polina, Scrum Master** <br> 
+  >"Don't start trends, follow them! With Trendr..." <br> **-Polina, Scrum Master** <br> 
   ___ 
   
 
