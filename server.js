@@ -44,17 +44,17 @@ TEST ROUTES
 app.get('/populateDatabaseWithCountryTrends', function(req, res) {
   countryTrends.returnTrendsByCountry(function(results) {
     console.log("results", results);
-    res.status(200);
-    res.send(results);
   });
+  res.status(200);
+  res.send("DB populated");
 });
 
 app.get('/populateDatabaseWithCityTrends', function(req, res) {
   cityTrends.returnTrendsByCity(function(results) {
   console.log("results", results);
-  res.status(200);
-  res.send(results);
   });
+  res.status(200);
+  res.send("DB populated");
 });
 
 app.get('/db', function(req, res) {
