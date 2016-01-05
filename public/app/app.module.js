@@ -3,11 +3,8 @@ var trendr = angular.module('trendr', [
   'routes',
   'home',
   'chart',
-  'brandon',
-  'geetha',
   'stackedAreaChart',
-  'kevin',
-  'simon',
+  'topTrendsByCity',
   'usDataMap'
   // add additional module names here
 ]);

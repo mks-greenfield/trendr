@@ -1,6 +1,6 @@
-angular.module('simon', ['simonFactory'])
+angular.module('topTrendsByCity', ['TopTrendsByCityFactory'])
 
-.controller('SimonController', function($scope, Locations) {
+.controller('TopTrendsByCityController', function($scope, Locations) {
 
   $scope.getSanFrancisco = Locations.getSanFrancisco;
   $scope.getChicago = Locations.getChicago;

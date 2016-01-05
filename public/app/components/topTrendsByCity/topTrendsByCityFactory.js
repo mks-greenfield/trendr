@@ -1,4 +1,4 @@
-angular.module('simonFactory', [])
+angular.module('TopTrendsByCityFactory', [])
 
 .factory('Locations', function($http) {
 
