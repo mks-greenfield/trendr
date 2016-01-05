@@ -44,7 +44,7 @@ angular.module('TopTrendsByCityFactory', [])
       "header": {
         "title": {
           "text": chartTitle,
-          "fontSize": 34,
+          "fontSize": 20,
           "font": "courier"
         },
         "subtitle": {
@@ -58,8 +58,8 @@ angular.module('TopTrendsByCityFactory', [])
       },
       "size": {
         "canvasWidth": 800,
-        "pieInnerRadius": "95%",
-        "pieOuterRadius": "70%"
+        "pieInnerRadius": "80%",
+        "pieOuterRadius": "65%"
       },
       "data": {
         "sortOrder": "label-desc",
@@ -74,7 +74,7 @@ angular.module('TopTrendsByCityFactory', [])
           "format": "none"
         },
         "mainLabel": {
-          "fontSize": 11
+          "fontSize": 15
         },
         "percentage": {
           "color": "#999999",
