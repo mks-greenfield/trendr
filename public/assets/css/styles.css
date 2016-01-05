@@ -38,5 +38,11 @@ section.contact {
 
 section.footer {
     color: #fff;
-    background: #172431;
+    background: #222;
+    padding: 10px 0px 0px 10px;
+}
+
+.footer .fa {
+    color: #fff;
+    padding: 0px 10px 0px 10px;
 }
