@@ -61,15 +61,13 @@ exports.returnTrendsByCity = function(callback) {
 
     // this for loop was to populate db with all locations listed above, making an api call to each location id
     for (var i = 0; i < tweets[0].trends.length; i++) {
-      if (tweets[0].trends[i].tweet_volume) {
-        new LocationTrend({
-            location: tweets[0].locations[0].name,
-            trend_name: tweets[0].trends[i].name,
-            tweet_volume: tweets[0].trends[i].tweet_volume,
-            created_at: tweets[0].created_at
-          })
-          .save(errorHandler);
-      }
+      new LocationTrend({
+          location: tweets[0].locations[0].name,
+          trend_name: tweets[0].trends[i].name,
+          tweet_volume: tweets[0].trends[i].tweet_volume,
+          created_at: tweets[0].created_at
+        })
+        .save(errorHandler);
     }
 
     if (callback) {
