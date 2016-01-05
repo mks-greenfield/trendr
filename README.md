@@ -29,8 +29,8 @@ ACCESS_TOKEN_SECRET='TWITTER_ACCESS_TOKEN_SECRET'
 MONGOLAB_URI='mongodb://readonly:123@ds037165.mongolab.com:37165/mkstrendr'
 ```
 
-You will need access to the Mongolabs DB with current data to load charts. The one above is a read-only user.
-
+- You will need access to the Mongolabs DB with current data to load charts. The one above is a read-only user.
+- Take a look at the following [wiki article](https://github.com/mks-greenfield/planning/wiki/Using-Twitter-REST-API) on getting Twitter API keys. 
 - Starting the server: `npm start`. This will load any variables in `.env` and use `nodemon` by default.
 
 Getting Started with the Cron Job
@@ -59,3 +59,13 @@ Resources and Knowledge Base
 - [Deploying to Heroku](https://github.com/mks-greenfield/planning/wiki/Deploying-to-Heroku)
 - [Running a cron job on EC2](https://github.com/mks-greenfield/planning/wiki/Running-a-cron-job-on-EC2)
 - [Using NPM](https://github.com/mks-greenfield/planning/wiki/Using-NPM)
+
+Authors
+-------------------
+
+- Simon Ding
+- Polina Soshnin
+- Kevin Van
+- Brandon Goodfliesh
+- Geetha Ratnam
+
