@@ -17,7 +17,7 @@ Histogram Function
 **************************************************************/
 
 var histogram = function(ar){
-  return reduce(ar, function(obj, key){
+  return ar.reduce(ar, function(obj, key){
     obj[key] = obj[key] || 0;
     obj[key]++;
     return obj;
